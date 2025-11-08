@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  booking: one
+  items_json: MyText
+  total_cost_cents: 1
+  margin_cents: 1
+  status: MyString
+  provider_ref: MyString
+
+two:
+  booking: two
+  items_json: MyText
+  total_cost_cents: 1
+  margin_cents: 1
+  status: MyString
+  provider_ref: MyString

@@ -1,0 +1,21 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  customer: one
+  professional_profile: one
+  date: 2025-11-08 17:29:54
+  days: 1
+  status: MyString
+  address: MyString
+  description: MyText
+  subscription: one
+
+two:
+  customer: two
+  professional_profile: two
+  date: 2025-11-08 17:29:54
+  days: 1
+  status: MyString
+  address: MyString
+  description: MyText
+  subscription: two

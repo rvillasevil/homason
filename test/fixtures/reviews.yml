@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  rating: 1
+  comment: MyText
+  booking: one
+  customer: one
+  professional_profile: one
+
+two:
+  rating: 1
+  comment: MyText
+  booking: two
+  customer: two
+  professional_profile: two

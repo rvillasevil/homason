@@ -1,0 +1,19 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: one
+  subscription_plan: one
+  active: false
+  started_at: 2025-11-08 17:39:18
+  cancelled_at: 2025-11-08 17:39:18
+  remaining_hours: 1
+  external_ref: MyString
+
+two:
+  user: two
+  subscription_plan: two
+  active: false
+  started_at: 2025-11-08 17:39:18
+  cancelled_at: 2025-11-08 17:39:18
+  remaining_hours: 1
+  external_ref: MyString

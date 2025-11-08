@@ -1,0 +1,21 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: one
+  bio: MyText
+  years_experience: 1
+  zone: MyString
+  day_rate: 1
+  verified: false
+  rating_avg: 1.5
+  rating_count: 1
+
+two:
+  user: two
+  bio: MyText
+  years_experience: 1
+  zone: MyString
+  day_rate: 1
+  verified: false
+  rating_avg: 1.5
+  rating_count: 1
