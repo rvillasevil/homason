@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
+  root "home#index"
+
   post "signup", to: "auth#signup"
   post "login",  to: "auth#login"
-
   resources :professional_profiles, only: [:index, :create, :update, :show]
   resources :bookings, only: [:index, :create, :update, :show]
   resources :material_orders, only: [:create, :show]
