@@ -8,7 +8,7 @@ class CreateBookings < ActiveRecord::Migration[8.0]
       t.string :status, null: false, default: "pending"
       t.string :address, null: false
       t.text :description, null: false
-      t.references :subscription, foreign_key: true
+      t.references :subscription
 
       t.timestamps
     end

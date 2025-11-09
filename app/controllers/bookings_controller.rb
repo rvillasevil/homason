@@ -1,43 +1,63 @@
-class ProfessionalProfilesController < ApplicationController
-  before_action :authenticate_user!, except: [:index, :show]
+class BookingsController < ApplicationController
+  before_action :authenticate_user!
+  before_action :set_booking, only: [:show, :update]
+  before_action :authorize_booking_access!, only: [:show, :update]
 
   def index
-    profiles = ProfessionalProfile.where(verified: true).includes(:user)
-    render json: profiles.as_json(include: { user: { only: [:name] } })
+    bookings = case current_user.role
+               when "admin"
+                 Booking.all
+               when "professional"
+                 Booking.where(professional_profile_id: current_user.professional_profile_id)
+               else
+                 current_user.bookings
+               end
+
+    render json: bookings
   end
 
   def show
-    profile = ProfessionalProfile.find(params[:id])
-    render json: profile.as_json(include: { user: { only: [:name] } })
+    render json: @booking
   end
 
   def create
-    require_role!("professional", "admin")
+    require_role!("customer", "admin")
 
-    profile = ProfessionalProfile.new(profile_params.merge(user_id: current_user.id, verified: false))
-    if profile.save
-      render json: profile, status: :created
+    booking = current_user.bookings.new(booking_params)
+    if booking.save
+      render json: booking, status: :created
     else
-      render json: { errors: profile.errors.full_messages }, status: :unprocessable_entity
+      render json: { errors: booking.errors.full_messages }, status: :unprocessable_entity
     end
   end
 
   def update
-    profile = ProfessionalProfile.find(params[:id])
-    unless current_user.admin? || profile.user_id == current_user.id
-      return render json: { error: "Forbidden" }, status: :forbidden
-    end
-
-    if profile.update(profile_params)
-      render json: profile
+    if @booking.update(update_booking_params)
+      render json: @booking
     else
-      render json: { errors: profile.errors.full_messages }, status: :unprocessable_entity
+      render json: { errors: @booking.errors.full_messages }, status: :unprocessable_entity
     end
   end
 
   private
 
-  def profile_params
-    params.require(:professional_profile).permit(:bio, :years_experience, :zone, :day_rate, :verified)
+  def set_booking
+    @booking = Booking.find(params[:id])
+  end
+
+  def authorize_booking_access!
+    return if current_user.admin?
+    return if @booking.customer_id == current_user.id
+    return if current_user.professional? && current_user.professional_profile_id == @booking.professional_profile_id
+
+    render json: { error: "Forbidden" }, status: :forbidden
+  end
+
+  def booking_params
+    params.require(:booking).permit(:professional_profile_id, :date, :days, :address, :description, :subscription_id)
+  end
+
+  def update_booking_params
+    booking_params.merge(params.require(:booking).permit(:status))
   end
 end

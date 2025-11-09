@@ -1,17 +1,18 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  booking: one
-  items_json: MyText
-  total_cost_cents: 1
-  margin_cents: 1
-  status: MyString
-  provider_ref: MyString
 
-two:
+paint_order:
+  booking: one
+  items_json: [{"name":"Pintura","quantity":5,"unit_price_cents":1200}]
+  total_cost_cents: 6000
+  margin_cents: 600
+  status: pending
+  provider_ref: paint-001
+
+wood_order:
   booking: two
-  items_json: MyText
-  total_cost_cents: 1
-  margin_cents: 1
-  status: MyString
-  provider_ref: MyString
+  items_json: [{"name":"Madera","quantity":3,"unit_price_cents":2500}]
+  total_cost_cents: 7500
+  margin_cents: 750
+  status: ordered
+  provider_ref: wood-002

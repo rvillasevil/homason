@@ -14,4 +14,5 @@ class Booking < ApplicationRecord
   }, default: "pending"
 
   validates :date, :days, :address, :description, presence: true
+  validates :days, numericality: { greater_than: 0 }
 end
