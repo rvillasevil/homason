@@ -1,255 +1,643 @@
-<main class="homepage">
-  <header class="hero">
-    <p class="tagline">Albañiles verificados on demand para reformas sin sorpresas</p>
-    <h1>Tu obra, en buenas manos desde la app</h1>
-    <p class="subheadline">
-      Reserva albañiles certificados por jornada, controla materiales y disfruta de total flexibilidad.
-    </p>
-    <div class="cta-group">
-      <a href="#reserva" class="cta primary">Reserva una jornada</a>
-      <a href="#como-funciona" class="cta secondary">Descubre cómo funciona</a>
+<main class="landing-page">
+  <header class="hero" id="inicio">
+    <div class="hero__content">
+      <p class="hero__kicker">Líderes en reformas sin estrés</p>
+      <h1>Convierte tu obra en una experiencia premium, entregada a tiempo y sin sorpresas.</h1>
+      <p class="hero__lead">
+        Albañiles certificados, dirección técnica y control total desde la app. En 48&nbsp;horas tienes
+        un plan, un presupuesto cerrado y un equipo listo para empezar.
+      </p>
+      <div class="hero__cta">
+        <a class="btn btn--primary" href="#planificacion">Agenda una videollamada gratuita</a>
+        <a class="btn btn--ghost" href="#testimonios">Ver casos reales</a>
+      </div>
+      <ul class="hero__trust">
+        <li>+1.200 reformas entregadas puntualmente</li>
+        <li>Garantía escrita de 12 meses</li>
+        <li>Profesionales verificados y asegurados</li>
+      </ul>
     </div>
+    <aside class="hero__booking" id="planificacion">
+      <h2>Recibe tu plan maestro en 48&nbsp;h</h2>
+      <p class="booking__subtitle">Sin compromiso. Te llamamos para entender tu proyecto y enviar una propuesta cerrada.</p>
+      <form class="booking__form">
+        <label>
+          <span>Nombre</span>
+          <input type="text" name="nombre" placeholder="Tu nombre" required>
+        </label>
+        <label>
+          <span>Email</span>
+          <input type="email" name="email" placeholder="tucorreo@email.com" required>
+        </label>
+        <label>
+          <span>Tipo de obra</span>
+          <select name="tipo" required>
+            <option value="" disabled selected>Selecciona una opción</option>
+            <option>Reforma integral de vivienda</option>
+            <option>Cocina o baño</option>
+            <option>Mantenimiento / pequeñas reformas</option>
+            <option>Locales comerciales y oficinas</option>
+          </select>
+        </label>
+        <button type="submit" class="btn btn--primary btn--full">Quiero mi propuesta</button>
+        <p class="booking__footnote">Responderemos en menos de 24 horas laborables.</p>
+      </form>
+    </aside>
   </header>
 
-  <section class="value" id="propuesta-valor">
-    <h2>Propuesta de valor</h2>
-    <div class="value-columns">
+  <section class="proof" aria-label="Sellos y partners">
+    <p>Confían en nosotros gestores de fincas, propietarios de Airbnb y cadenas retail en toda España.</p>
+    <ul class="proof__badges">
+      <li>Seguro Allianz</li>
+      <li>Financiación Cetelem</li>
+      <li>Materiales Porcelanosa</li>
+      <li>Partner Idealista</li>
+    </ul>
+  </section>
+
+  <section class="benefits" id="beneficios">
+    <h2>Lo hacemos irresistible porque nos ocupamos de todo</h2>
+    <div class="benefits__grid">
       <article>
-        <h3>Para el cliente</h3>
-        <ul>
-          <li>Albañiles verificados disponibles por día o bloques de 4/8 horas.</li>
-          <li>Transparencia total: conoces el precio antes de confirmar.</li>
-          <li>Flexibilidad absoluta: cancela cuando quieras, sin permanencia.</li>
-          <li>Gestión de materiales a tu manera: los aportas o los compramos vía app.</li>
-          <li>Garantía de calidad con valoraciones, fotos, seguro y visita técnica opcional.</li>
-        </ul>
+        <h3>Dirección técnica incluida</h3>
+        <p>Un arquitecto supervisor valida cada fase, coordina gremios y te informa con reportes semanales.</p>
       </article>
       <article>
-        <h3>Para el profesional</h3>
-        <ul>
-          <li>Flujo constante de trabajos ajustados a su zona y disponibilidad.</li>
-          <li>Pagos asegurados y puntuales gestionados por la plataforma.</li>
-          <li>Menos tiempo buscando clientes, más tiempo facturable en obra.</li>
-        </ul>
+        <h3>Presupuesto cerrado</h3>
+        <p>Control de costes en tiempo real, hitos de pago claros y sin desviaciones inesperadas.</p>
+      </article>
+      <article>
+        <h3>Albañiles verificados</h3>
+        <p>Equipos propios y colaboradores certificados, con seguro de RC y rating mínimo 4.8/5.</p>
+      </article>
+      <article>
+        <h3>Materiales premium</h3>
+        <p>Acceso a catálogos profesionales, logística incluida y almacenamiento seguro hasta la instalación.</p>
+      </article>
+      <article>
+        <h3>Garantía ampliada</h3>
+        <p>12 meses de cobertura y revisitas sin coste si algo no queda perfecto.</p>
+      </article>
+      <article>
+        <h3>Todo desde la app</h3>
+        <p>Seguimiento con fotos, chat directo con el jefe de obra y firma digital de cada hito.</p>
       </article>
     </div>
   </section>
 
-  <section class="segments" id="segmentos">
-    <h2>Segmentos de cliente</h2>
-    <ul>
-      <li><strong>Particulares:</strong> pequeñas reformas, arreglos y mantenimiento continuo del hogar.</li>
-      <li><strong>Propietarios con varias viviendas / Hosts Airbnb:</strong> intervenciones rápidas y recurrentes.</li>
-      <li><strong>Pequeñas empresas y locales:</strong> mantenimiento periódico de tabiques, suelos y pequeñas obras.</li>
-      <li><strong>Futuro:</strong> promotoras pequeñas y administradores de fincas.</li>
-    </ul>
+  <section class="process" id="proceso">
+    <div class="process__intro">
+      <h2>Tu reforma impecable en tres pasos</h2>
+      <p>Sin sorpresas, sin estrés y con un equipo obsesionado con la calidad.</p>
+    </div>
+    <ol class="process__steps">
+      <li>
+        <h3>Diagnóstico express</h3>
+        <p>Visita técnica o videollamada en 24&nbsp;h para entender objetivos, tiempos y presupuesto.</p>
+      </li>
+      <li>
+        <h3>Plan maestro personalizado</h3>
+        <p>Recibes un cronograma con fechas, responsables, materiales y un precio cerrado por hito.</p>
+      </li>
+      <li>
+        <h3>Ejecución sin fricciones</h3>
+        <p>Coordinamos a todos los gremios, gestionamos licencias y entregamos la obra lista para vivir.</p>
+      </li>
+    </ol>
   </section>
 
-  <section class="service-design" id="como-funciona">
-    <h2>Diseño del servicio</h2>
-    <div class="service-columns">
-      <article id="reserva">
-        <h3>Cómo funciona para el cliente</h3>
-        <ol>
-          <li>Elige el tipo de tarea (tabique, alicatado, reparación de humedades, etc.).</li>
-          <li>La app sugiere jornadas estimadas, visita previa y materiales necesarios.</li>
-          <li>Indica si ya tienes los materiales o si prefieres que los gestionemos.</li>
-          <li>Reserva días y franjas horarias según tu agenda.</li>
-          <li>Paga con un plan recurrente flexible o por jornada/proyecto y pausa cuando quieras.</li>
-        </ol>
+  <section class="stats" aria-label="Métricas de impacto">
+    <div>
+      <strong>94%</strong>
+      <span>Clientes que repiten o nos recomiendan.</span>
+    </div>
+    <div>
+      <strong>9,6/10</strong>
+      <span>Satisfacción media en entregas finales.</span>
+    </div>
+    <div>
+      <strong>48&nbsp;h</strong>
+      <span>Tiempo máximo para recibir tu plan de obra.</span>
+    </div>
+    <div>
+      <strong>-28%</strong>
+      <span>Menos retrasos frente a la media del sector.</span>
+    </div>
+  </section>
+
+  <section class="testimonials" id="testimonios">
+    <h2>Historias reales, resultados impecables</h2>
+    <div class="testimonials__grid">
+      <figure>
+        <blockquote>
+          «Convertimos un piso turístico en un loft en 6 semanas. Nos mantuvieron informados cada día y la ocupación subió un 40&nbsp;%.»
+        </blockquote>
+        <figcaption>Laura, propietaria de 3 apartamentos turísticos en Madrid</figcaption>
+      </figure>
+      <figure>
+        <blockquote>
+          «Por fin un proveedor que cumple plazos. Coordinan licencias, materiales y gremios. Nuestra franquicia abre locales sin retrasos.»
+        </blockquote>
+        <figcaption>Carlos, director de expansión retail</figcaption>
+      </figure>
+      <figure>
+        <blockquote>
+          «La app es una maravilla. Apruebas cambios, ves fotos y puedes pausar trabajos si surge algo. Total tranquilidad.»
+        </blockquote>
+        <figcaption>Ana y Víctor, reforma integral de vivienda en Valencia</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="plans" id="planes">
+    <h2>Elige la fórmula que se ajusta a tu proyecto</h2>
+    <div class="plans__grid">
+      <article class="plan">
+        <h3>Plan Exprés</h3>
+        <p class="plan__price">Desde 4.500&nbsp;€</p>
+        <ul>
+          <li>Equipos listos en 7 días</li>
+          <li>Ideal para cocinas, baños o reformas parciales</li>
+          <li>Gestión integral de materiales</li>
+          <li>Garantía de 12 meses</li>
+        </ul>
+        <a class="btn btn--secondary" href="#planificacion">Solicitar presupuesto</a>
       </article>
-      <article>
-        <h3>Cómo funciona para el albañil</h3>
-        <ol>
-          <li>Se inscribe con verificación de documentación y experiencia.</li>
-          <li>Recibe trabajos según zona, rating y disponibilidad.</li>
-          <li>Cobra por jornada o bloque horario; la plataforma retiene comisión.</li>
-        </ol>
+      <article class="plan plan--highlight">
+        <p class="plan__label">Más elegido</p>
+        <h3>Plan Total Comfort</h3>
+        <p class="plan__price">Desde 12.900&nbsp;€</p>
+        <ul>
+          <li>Arquitecto y Project Manager dedicados</li>
+          <li>Reportes semanales + control de costes en app</li>
+          <li>Decoración y estilismo opcional</li>
+          <li>Garantía extendida a 24 meses</li>
+        </ul>
+        <a class="btn btn--primary" href="#planificacion">Reserva tu sesión estratégica</a>
+      </article>
+      <article class="plan">
+        <h3>Plan Corporate</h3>
+        <p class="plan__price">Cuota mensual a medida</p>
+        <ul>
+          <li>SLA prioritario 24/7</li>
+          <li>Multiubicación con un único interlocutor</li>
+          <li>Gestión de mantenimiento recurrente</li>
+          <li>Facturación consolidada y reporting</li>
+        </ul>
+        <a class="btn btn--secondary" href="#contacto">Habla con dirección comercial</a>
       </article>
     </div>
   </section>
 
-  <section class="revenue" id="modelo-ingresos">
-    <h2>Modelo de ingresos</h2>
-    <article>
-      <h3>Suscripción: Plan Casa Segura</h3>
-      <p>Suscripción flexible que incluye 1 jornada mensual a precio reducido, prioridad en agenda y soporte rápido.</p>
-      <ul>
-        <li>Renovación automática mensual sin permanencia.</li>
-        <li>Acumula jornadas hasta un límite definido.</li>
-        <li>Cancela cuando quieras, sin devoluciones del mes ya cobrado.</li>
-      </ul>
-    </article>
-    <article>
-      <h3>Tarifa diaria / por bloque horario</h3>
-      <p>Precio estimado entre 160€ y 220€ por jornada completa, con bloques disponibles.</p>
-      <ul>
-        <li>Reparto transparente entre profesional y plataforma (20–30% de comisión).</li>
-        <li>Bloques reducen fricciones frente a tarifas por hora.</li>
-      </ul>
-    </article>
-    <article>
-      <h3>Margen en materiales</h3>
-      <p>Acuerdos con almacenes para obtener descuentos profesionales y mantener margen.</p>
-      <ul>
-        <li>Packs predefinidos como “Pack tabique 10m²” o “Pack reforma lavabo”.</li>
-        <li>Presupuestos personalizados con entrega coordinada.</li>
-      </ul>
-    </article>
-    <article>
-      <h3>Servicios premium B2B</h3>
-      <p>Administradores de fincas y cadenas de locales con necesidades recurrentes.</p>
-      <ul>
-        <li>Cuotas mensuales con SLA garantizados y gestor dedicado.</li>
-        <li>Tarifas especiales por volumen de jornadas.</li>
-      </ul>
-    </article>
-  </section>
-
-  <section class="operations" id="operaciones">
-    <h2>Estructura operativa clave</h2>
-    <div class="operations-columns">
-      <article>
-        <h3>Curación y control de calidad</h3>
-        <ul>
-          <li>Proceso exigente de selección y verificación de profesionales.</li>
-          <li>Sistema de reviews con expulsión si la calidad no se mantiene.</li>
-          <li>Seguro de responsabilidad civil y revisitas incluidas si algo falla.</li>
-        </ul>
-      </article>
-      <article>
-        <h3>Logística y pagos</h3>
-        <ul>
-          <li>Integración con proveedores para coordinar entrega de materiales.</li>
-          <li>El cliente paga a la plataforma; el profesional cobra al finalizar (menos comisión).</li>
-          <li>Suscripciones con tarjeta domiciliada para ingresos predecibles.</li>
-        </ul>
-      </article>
+  <section class="cta" aria-label="Llamada a la acción">
+    <div class="cta__content">
+      <h2>La próxima obra impecable puede ser la tuya</h2>
+      <p>Un especialista te asesora gratis, sin compromiso. Si no te enamoran nuestras propuestas, te devolvemos el tiempo con un plan de obra listo para ejecutar.</p>
+      <a class="btn btn--primary" href="#planificacion">Quiero mi plan personalizado</a>
     </div>
   </section>
 
-  <section class="sustainability" id="sostenibilidad">
-    <h2>Pago periódico y cancelación flexible</h2>
-    <p>Beneficios tangibles sostienen el modelo sin permanencia obligatoria.</p>
-    <ul>
-      <li>Precio reducido, prioridad y acumulación parcial dentro de la cuota.</li>
-      <li>Bonos de jornadas (3, 5, 10) con descuento que se conservan aunque canceles.</li>
-      <li>Sin permanencia, pero sin devoluciones del ciclo ya cobrado.</li>
-    </ul>
+  <section class="faq" id="faq">
+    <h2>Preguntas frecuentes</h2>
+    <details>
+      <summary>¿Cuánto tardáis en empezar una obra?</summary>
+      <p>Tras la videollamada inicial enviamos plan y presupuesto en 48&nbsp;h. Una vez aceptado, reservamos equipo y arrancamos en 7 a 10 días laborables.</p>
+    </details>
+    <details>
+      <summary>¿Qué pasa si surge un imprevisto?</summary>
+      <p>Todos los cambios se aprueban desde la app. Ajustamos el presupuesto antes de ejecutar y nunca realizamos trabajos extra sin tu visto bueno.</p>
+    </details>
+    <details>
+      <summary>¿Trabajáis fuera de grandes ciudades?</summary>
+      <p>Sí. Cubrimos toda la península a través de cuadrillas locales verificadas y un equipo central de dirección de obra.</p>
+    </details>
   </section>
 
-  <section class="metrics" id="metricas">
-    <h2>Métricas clave</h2>
-    <ul>
-      <li>CAC vs LTV por segmento.</li>
-      <li>Número de jornadas por cliente al mes.</li>
-      <li>Porcentaje de suscriptores frente a usuarios puntuales.</li>
-      <li>Retención de profesionales activos.</li>
-      <li>Margen medio por jornada después de pagar al albañil.</li>
-      <li>NPS y valoración media por trabajo.</li>
-    </ul>
+  <section class="contact" id="contacto">
+    <div>
+      <h2>Hablemos de tu proyecto</h2>
+      <p>Llámanos, escríbenos o reserva directamente una videollamada en el horario que prefieras.</p>
+      <ul class="contact__list">
+        <li><strong>Teléfono:</strong> <a href="tel:+34911223344">91 122 33 44</a></li>
+        <li><strong>Email:</strong> <a href="mailto:hola@homason.com">hola@homason.com</a></li>
+        <li><strong>Videollamada:</strong> Agenda en la app Homason disponible 24/7.</li>
+      </ul>
+    </div>
+    <div class="contact__card">
+      <h3>¿Prefieres una visita presencial?</h3>
+      <p>Nuestros técnicos pueden desplazarse para evaluar in situ y darte recomendaciones de diseño sin coste.</p>
+      <a class="btn btn--ghost" href="#planificacion">Solicitar visita técnica</a>
+    </div>
   </section>
 </main>
 
 <style>
-  .homepage {
+  :root {
+    color-scheme: light;
+  }
+
+  .landing-page {
     font-family: "Helvetica Neue", Arial, sans-serif;
+    color: #0f172a;
     margin: 0 auto;
-    max-width: 960px;
+    max-width: 1120px;
     padding: 3rem 1.5rem 4rem;
     line-height: 1.6;
-    color: #1f2933;
   }
 
-  .hero {
-    text-align: center;
-    margin-bottom: 4rem;
+  h1, h2, h3 {
+    font-weight: 700;
+    line-height: 1.2;
+    color: #0b1324;
   }
 
-  .hero .tagline {
-    font-weight: 600;
-    color: #586069;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-  }
-
-  .hero h1 {
-    font-size: 2.75rem;
-    margin: 1rem 0 0.75rem;
-    color: #0f172a;
-  }
-
-  .hero .subheadline {
-    font-size: 1.15rem;
-    margin-bottom: 1.5rem;
-  }
-
-  .cta-group {
-    display: flex;
-    justify-content: center;
-    gap: 1rem;
-    flex-wrap: wrap;
-  }
-
-  .cta {
-    padding: 0.75rem 1.75rem;
-    border-radius: 999px;
-    font-weight: 600;
-    text-decoration: none;
-  }
-
-  .cta.primary {
-    background: #2563eb;
-    color: #fff;
-  }
-
-  .cta.secondary {
-    border: 2px solid #2563eb;
-    color: #2563eb;
-  }
-
-  section {
-    margin-bottom: 3rem;
-  }
-
-  h2 {
-    font-size: 2rem;
-    margin-bottom: 1rem;
-    color: #111827;
-  }
-
-  h3 {
-    font-size: 1.4rem;
+  p {
     margin-bottom: 0.75rem;
   }
 
-  ul, ol {
-    padding-left: 1.25rem;
+  .hero {
+    display: grid;
+    gap: 2.5rem;
+    margin-bottom: 4rem;
   }
 
-  .value-columns,
-  .service-columns,
-  .operations-columns {
+  @media (min-width: 960px) {
+    .hero {
+      grid-template-columns: 1.3fr 1fr;
+      align-items: center;
+    }
+  }
+
+  .hero__kicker {
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-weight: 600;
+    color: #2563eb;
+    margin-bottom: 0.75rem;
+  }
+
+  .hero__lead {
+    font-size: 1.15rem;
+    color: #1f2937;
+  }
+
+  .hero__cta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin: 1.75rem 0 1rem;
+  }
+
+  .hero__trust {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    gap: 0.5rem;
+    color: #475569;
+  }
+
+  .hero__booking {
+    background: #ffffff;
+    border-radius: 1.25rem;
+    box-shadow: 0 18px 45px rgba(15, 23, 42, 0.08);
+    padding: 2rem;
+    border: 1px solid rgba(15, 23, 42, 0.06);
+  }
+
+  .booking__subtitle {
+    color: #475569;
+  }
+
+  .booking__form {
+    display: grid;
+    gap: 1rem;
+    margin-top: 1.5rem;
+  }
+
+  .booking__form label {
+    display: grid;
+    gap: 0.35rem;
+    font-weight: 600;
+    color: #1e293b;
+  }
+
+  .booking__form input,
+  .booking__form select {
+    padding: 0.75rem 0.9rem;
+    border-radius: 0.75rem;
+    border: 1px solid rgba(148, 163, 184, 0.7);
+    font-size: 1rem;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+
+  .booking__form input:focus,
+  .booking__form select:focus {
+    outline: none;
+    border-color: #2563eb;
+    box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1);
+  }
+
+  .booking__footnote {
+    font-size: 0.875rem;
+    color: #64748b;
+    text-align: center;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.85rem 1.85rem;
+    border-radius: 999px;
+    font-weight: 600;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .btn:hover,
+  .btn:focus-visible {
+    transform: translateY(-1px);
+    box-shadow: 0 12px 24px rgba(15, 23, 42, 0.12);
+  }
+
+  .btn--primary {
+    background: linear-gradient(135deg, #2563eb, #1d4ed8);
+    color: #fff;
+  }
+
+  .btn--secondary {
+    background: #0f172a;
+    color: #fff;
+  }
+
+  .btn--ghost {
+    background: #fff;
+    color: #1d4ed8;
+    border: 2px solid #1d4ed8;
+    box-shadow: none;
+  }
+
+  .btn--full {
+    width: 100%;
+  }
+
+  .proof {
+    text-align: center;
+    margin: 2rem auto 4rem;
+    color: #475569;
+  }
+
+  .proof__badges {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-top: 1rem;
+    list-style: none;
+    padding: 0;
+    font-weight: 600;
+    color: #1f2937;
+  }
+
+  .benefits {
+    margin-bottom: 4rem;
+  }
+
+  .benefits__grid {
     display: grid;
     gap: 1.5rem;
   }
 
   @media (min-width: 768px) {
-    .value-columns,
-    .service-columns,
-    .operations-columns {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
+    .benefits__grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
     }
   }
 
-  .metrics ul {
-    columns: 2;
-    column-gap: 2rem;
+  .benefits__grid article {
+    background: #f8fafc;
+    border-radius: 1rem;
+    padding: 1.75rem;
+    border: 1px solid rgba(148, 163, 184, 0.35);
+    min-height: 200px;
   }
 
-  @media (max-width: 640px) {
-    .metrics ul {
-      columns: 1;
+  .process {
+    background: linear-gradient(120deg, rgba(37, 99, 235, 0.08), rgba(14, 165, 233, 0.1));
+    border-radius: 1.5rem;
+    padding: 3rem 2rem;
+    margin-bottom: 4rem;
+  }
+
+  .process__intro {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+
+  .process__steps {
+    display: grid;
+    gap: 1.5rem;
+    list-style: none;
+    padding: 0;
+  }
+
+  @media (min-width: 768px) {
+    .process__steps {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
     }
+  }
+
+  .process__steps li {
+    background: #fff;
+    border-radius: 1rem;
+    padding: 1.75rem;
+    border: 1px solid rgba(37, 99, 235, 0.2);
+    box-shadow: 0 14px 30px rgba(15, 23, 42, 0.08);
+  }
+
+  .stats {
+    display: grid;
+    gap: 1.5rem;
+    margin-bottom: 4rem;
+  }
+
+  @media (min-width: 768px) {
+    .stats {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+  }
+
+  .stats div {
+    background: #0f172a;
+    color: #fff;
+    border-radius: 1.1rem;
+    padding: 1.75rem;
+    text-align: center;
+  }
+
+  .stats strong {
+    display: block;
+    font-size: 2rem;
+    margin-bottom: 0.35rem;
+  }
+
+  .testimonials {
+    margin-bottom: 4rem;
+  }
+
+  .testimonials__grid {
+    display: grid;
+    gap: 1.5rem;
+  }
+
+  @media (min-width: 900px) {
+    .testimonials__grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+
+  .testimonials figure {
+    background: #ffffff;
+    border-radius: 1rem;
+    padding: 1.75rem;
+    border: 1px solid rgba(148, 163, 184, 0.4);
+    box-shadow: 0 12px 28px rgba(15, 23, 42, 0.08);
+  }
+
+  .testimonials blockquote {
+    font-size: 1.05rem;
+    font-style: italic;
+    color: #1f2937;
+  }
+
+  .testimonials figcaption {
+    margin-top: 1rem;
+    font-weight: 600;
+    color: #2563eb;
+  }
+
+  .plans {
+    margin-bottom: 4rem;
+  }
+
+  .plans__grid {
+    display: grid;
+    gap: 1.5rem;
+  }
+
+  @media (min-width: 960px) {
+    .plans__grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+
+  .plan {
+    background: #ffffff;
+    border-radius: 1.25rem;
+    padding: 2rem;
+    border: 1px solid rgba(148, 163, 184, 0.35);
+    display: grid;
+    gap: 1rem;
+  }
+
+  .plan__price {
+    font-size: 1.75rem;
+    color: #2563eb;
+    font-weight: 700;
+  }
+
+  .plan ul {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    gap: 0.75rem;
+    color: #475569;
+  }
+
+  .plan__label {
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-size: 0.85rem;
+    color: #facc15;
+    font-weight: 700;
+  }
+
+  .plan--highlight {
+    border: 2px solid #2563eb;
+    box-shadow: 0 18px 45px rgba(37, 99, 235, 0.18);
+    transform: translateY(-10px);
+  }
+
+  .cta {
+    background: linear-gradient(120deg, #1d4ed8, #9333ea);
+    border-radius: 1.5rem;
+    padding: 3rem 2rem;
+    color: #fff;
+    text-align: center;
+    margin-bottom: 4rem;
+  }
+
+  .cta__content p {
+    max-width: 600px;
+    margin: 0.75rem auto 1.5rem;
+    color: rgba(255, 255, 255, 0.9);
+  }
+
+  .faq {
+    margin-bottom: 4rem;
+  }
+
+  .faq details {
+    background: #f8fafc;
+    border-radius: 0.85rem;
+    margin-bottom: 1rem;
+    padding: 1.25rem 1.5rem;
+    border: 1px solid rgba(148, 163, 184, 0.4);
+  }
+
+  .faq summary {
+    font-weight: 600;
+    cursor: pointer;
+  }
+
+  .contact {
+    display: grid;
+    gap: 1.5rem;
+    align-items: stretch;
+  }
+
+  @media (min-width: 900px) {
+    .contact {
+      grid-template-columns: 1.3fr 1fr;
+    }
+  }
+
+  .contact__list {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    gap: 0.75rem;
+    color: #1f2937;
+  }
+
+  .contact__card {
+    background: #ffffff;
+    border-radius: 1.25rem;
+    padding: 2rem;
+    border: 1px solid rgba(148, 163, 184, 0.35);
+    box-shadow: 0 16px 36px rgba(15, 23, 42, 0.08);
+    display: grid;
+    gap: 0.75rem;
+  }
+
+  a {
+    color: inherit;
+  }
+
+  a:hover,
+  a:focus {
+    color: #2563eb;
   }
 </style>
