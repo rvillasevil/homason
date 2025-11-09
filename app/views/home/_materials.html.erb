@@ -1,0 +1,70 @@
+<section class="section" id="materiales" aria-labelledby="materials-heading">
+  <div class="section__inner split">
+    <div class="card stack">
+      <p class="section__eyebrow">Gestión de materiales</p>
+      <h2 id="materials-heading">Elige si compras por tu cuenta o delegas todo a Homason</h2>
+      <p>
+        Transparencia absoluta en precios. Puedes subir tus propias facturas o activar nuestro servicio de compra con
+        márgenes visibles y logística incluida. Todas las órdenes quedan asociadas al booking correspondiente.
+      </p>
+      <ul class="steps">
+        <li>
+          <strong>Catálogo inteligente.</strong> Selecciona acabados y marcas recomendadas según tu presupuesto.
+        </li>
+        <li>
+          <strong>Autogestión.</strong> Indica que aportarás materiales propios y te recordamos hitos de entrega.
+        </li>
+        <li>
+          <strong>Compra asistida.</strong> Confirmamos cantidades, negociamos precios y adelantamos pagos por ti.
+        </li>
+      </ul>
+    </div>
+    <div class="stack">
+      <div class="card">
+        <h3>Comparador de opciones</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Opción</th>
+              <th>Responsable</th>
+              <th>Ventajas</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Material propio</td>
+              <td>Cliente</td>
+              <td>Control total del presupuesto y elección de marcas favoritas.</td>
+            </tr>
+            <tr>
+              <td>Pedido Homason</td>
+              <td>Homason</td>
+              <td>Negociamos descuentos, gestionamos logística y almacenamiento.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="highlight-panel">
+        <h3>Solicitar pedido de materiales</h3>
+        <form class="stack" aria-label="Formulario de pedido de materiales">
+          <label>
+            <span>Booking asociado</span>
+            <input type="text" name="booking" placeholder="ID de reserva" />
+          </label>
+          <label>
+            <span>Listado de materiales</span>
+            <textarea name="items" rows="4" placeholder="Azulejo porcelánico 30m², pintura plástica 60L"></textarea>
+          </label>
+          <label>
+            <span>¿Quién paga?</span>
+            <select name="pago">
+              <option value="cliente" selected>Yo adelanto el pago</option>
+              <option value="homason">Quiero financiación Homason</option>
+            </select>
+          </label>
+          <button type="submit" class="btn btn--primary">Crear solicitud</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>

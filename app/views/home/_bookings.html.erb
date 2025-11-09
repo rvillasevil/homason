@@ -1,0 +1,57 @@
+<section class="section" aria-labelledby="booking-heading">
+  <div class="section__inner split">
+    <div class="stack">
+      <p class="section__eyebrow">Reserva y cancelación</p>
+      <h2 id="booking-heading">Reserva días completos de cuadrilla con total control</h2>
+      <p>
+        Usa la web o integra nuestra API para bloquear jornadas de profesionales específicos, asociarlas a una suscripción
+        activa y coordinar entregas. Si surge un imprevisto, cancela o reprográmalo con 48&nbsp;h de margen y todo queda
+        trazado.
+      </p>
+      <ul class="steps">
+        <li>
+          <strong>Reserva en minutos.</strong> Selecciona perfil profesional, fechas y número de días. Validamos la
+          disponibilidad en tiempo real.
+        </li>
+        <li>
+          <strong>Seguimiento diario.</strong> Recibe checklist de calidad, fotos y consumo de materiales al finalizar cada
+          jornada.
+        </li>
+        <li>
+          <strong>Cancelación transparente.</strong> Botón directo para cancelar o solicitar ampliaciones. Se recalculan las
+          horas restantes de tu plan al instante.
+        </li>
+      </ul>
+    </div>
+    <div class="card stack" role="presentation">
+      <h3>Simulador de reserva</h3>
+      <form class="stack" aria-label="Simulador de reserva">
+        <label>
+          <span>Profesional</span>
+          <select name="perfil">
+            <option>Oficial albañil senior</option>
+            <option>Jefe de obra</option>
+            <option>Equipo de acabados</option>
+          </select>
+        </label>
+        <label>
+          <span>Fechas</span>
+          <input type="date" name="fecha_inicio" />
+        </label>
+        <label>
+          <span>Días de trabajo</span>
+          <input type="number" name="dias" min="1" value="3" />
+        </label>
+        <label>
+          <span>¿Aplicar suscripción?</span>
+          <select name="suscripcion">
+            <option>Plan Crecimiento (160 h restantes)</option>
+            <option>Plan Lanzamiento (40 h restantes)</option>
+          </select>
+        </label>
+        <button type="submit" class="btn btn--primary">Generar reserva</button>
+        <small>Si prefieres, llama al +34 911 223 344 y lo gestionamos por ti.</small>
+      </form>
+    </div>
+  </div>
+</section>

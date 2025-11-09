@@ -1,5 +1,5 @@
 class HomeController < ActionController::Base
-  layout false
+layout "marketing"
 
   def index
     render template: "index"

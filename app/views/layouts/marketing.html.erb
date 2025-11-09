@@ -1,19 +1,503 @@
-<!DOCTYPE html>
+!DOCTYPE html>
 <html lang="es">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Homason · Albañiles verificados on demand</title>
+    <title>Homason · Gestión de obras con calidad y transparencia</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Source+Sans+3:wght@400;600&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&family=Source+Sans+3:wght@400;500;600&display=swap"
       rel="stylesheet"
     />
+    <style>
+      :root {
+        --brand-primary: #1d4ed8;
+        --brand-secondary: #9333ea;
+        --brand-accent: #f59e0b;
+        --text-dark: #0f172a;
+        --text-muted: #475569;
+        --bg-light: #f8fafc;
+        --border-soft: rgba(148, 163, 184, 0.35);
+        --radius-lg: 1.5rem;
+        --shadow-lg: 0 28px 60px rgba(15, 23, 42, 0.15);
+      }
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        font-family: "Source Sans 3", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        color: var(--text-dark);
+        background: linear-gradient(180deg, #ffffff 0%, #f1f5f9 100%);
+        line-height: 1.6;
+      }
+
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        font-family: "Montserrat", sans-serif;
+        color: var(--text-dark);
+        margin-top: 0;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      a:hover,
+      a:focus {
+        color: var(--brand-primary);
+      }
+
+      .page {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+      }
+
+      main {
+        flex: 1;
+      }
+
+      .navbar {
+        position: sticky;
+        top: 0;
+        z-index: 20;
+        backdrop-filter: blur(14px);
+        background: rgba(255, 255, 255, 0.92);
+        border-bottom: 1px solid var(--border-soft);
+      }
+
+      .navbar__inner {
+        max-width: 1180px;
+        margin: 0 auto;
+        padding: 1rem 1.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1.5rem;
+      }
+
+      .navbar__brand {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        font-weight: 700;
+        font-size: 1.15rem;
+        color: var(--brand-primary);
+      }
+
+      .navbar__menu {
+        display: flex;
+        align-items: center;
+        gap: 1.5rem;
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      .navbar__cta {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        background: linear-gradient(120deg, var(--brand-primary), var(--brand-secondary));
+        color: #fff;
+        padding: 0.75rem 1.4rem;
+        border-radius: 999px;
+        font-weight: 600;
+        box-shadow: 0 12px 30px rgba(29, 78, 216, 0.25);
+      }
+
+      @media (max-width: 840px) {
+        .navbar__menu {
+          display: none;
+        }
+      }
+
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 999px;
+        border: none;
+        font-weight: 600;
+        font-family: inherit;
+        padding: 0.85rem 1.8rem;
+        cursor: pointer;
+        transition: transform 120ms ease, box-shadow 120ms ease;
+      }
+
+      .btn--primary {
+        background: linear-gradient(120deg, var(--brand-primary), var(--brand-secondary));
+        color: #fff;
+        box-shadow: 0 18px 38px rgba(37, 99, 235, 0.32);
+      }
+
+      .btn--outline {
+        background: transparent;
+        color: var(--brand-primary);
+        border: 1px solid rgba(37, 99, 235, 0.4);
+      }
+
+      .btn--ghost {
+        background: rgba(255, 255, 255, 0.7);
+        color: var(--brand-primary);
+        border: 1px solid rgba(37, 99, 235, 0.18);
+      }
+
+      .btn:focus,
+      .btn:hover {
+        transform: translateY(-2px);
+      }
+
+      .section {
+        padding: clamp(3rem, 8vw, 6rem) 1.5rem;
+      }
+
+      .section__inner {
+        max-width: 1180px;
+        margin: 0 auto;
+        display: grid;
+        gap: 2.5rem;
+      }
+
+      .section__eyebrow {
+        font-size: 0.85rem;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        font-weight: 700;
+        color: var(--brand-accent);
+      }
+
+      .card-grid {
+        display: grid;
+        gap: 1.5rem;
+      }
+
+      @media (min-width: 960px) {
+        .card-grid--three {
+          grid-template-columns: repeat(3, minmax(0, 1fr));
+        }
+      }
+
+      .card {
+        background: #fff;
+        border-radius: var(--radius-lg);
+        padding: 2rem;
+        border: 1px solid var(--border-soft);
+        box-shadow: 0 14px 34px rgba(15, 23, 42, 0.08);
+        display: grid;
+        gap: 1rem;
+      }
+
+      .plan__price {
+        font-size: clamp(1.6rem, 3.5vw, 2rem);
+        color: var(--brand-primary);
+        font-weight: 700;
+      }
+
+      .plan--highlight {
+        border: 2px solid var(--brand-primary);
+        box-shadow: 0 24px 50px rgba(37, 99, 235, 0.25);
+      }
+
+      .tag {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.35rem;
+        padding: 0.35rem 0.75rem;
+        border-radius: 999px;
+        font-size: 0.75rem;
+        font-weight: 600;
+        background: rgba(37, 99, 235, 0.08);
+        color: var(--brand-primary);
+      }
+
+      .metrics {
+        display: grid;
+        gap: 1rem;
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      }
+
+      .metric {
+        background: #fff;
+        border-radius: 1.25rem;
+        padding: 1.75rem;
+        border: 1px solid var(--border-soft);
+        display: grid;
+        gap: 0.35rem;
+      }
+
+      .metric strong {
+        font-size: clamp(2rem, 4vw, 2.6rem);
+        color: var(--brand-primary);
+      }
+
+      .timeline {
+        position: relative;
+        display: grid;
+        gap: 2rem;
+        padding-left: 1.5rem;
+      }
+
+      .timeline::before {
+        content: "";
+        position: absolute;
+        left: 0.5rem;
+        top: 0;
+        bottom: 0;
+        width: 2px;
+        background: linear-gradient(180deg, var(--brand-primary), var(--brand-secondary));
+      }
+
+      .timeline__item {
+        background: #fff;
+        border-radius: 1.25rem;
+        padding: 1.5rem 1.75rem;
+        border: 1px solid var(--border-soft);
+        box-shadow: 0 12px 28px rgba(15, 23, 42, 0.08);
+        position: relative;
+      }
+
+      .timeline__item::before {
+        content: attr(data-step);
+        position: absolute;
+        left: -1.45rem;
+        top: 1.5rem;
+        background: var(--brand-primary);
+        color: #fff;
+        font-weight: 700;
+        border-radius: 999px;
+        width: 2.2rem;
+        height: 2.2rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .split {
+        display: grid;
+        gap: 2rem;
+        align-items: center;
+      }
+
+      @media (min-width: 900px) {
+        .split {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+      }
+
+      .highlight-panel {
+        border-radius: var(--radius-lg);
+        border: 1px solid rgba(147, 197, 253, 0.6);
+        padding: 2.25rem;
+        background: linear-gradient(135deg, rgba(219, 234, 254, 0.6), rgba(236, 233, 254, 0.6));
+        box-shadow: 0 24px 50px rgba(79, 70, 229, 0.18);
+        display: grid;
+        gap: 1.25rem;
+      }
+
+      label span {
+        display: block;
+        font-weight: 600;
+        margin-bottom: 0.35rem;
+      }
+
+      input,
+      textarea,
+      select {
+        width: 100%;
+        border-radius: 0.85rem;
+        border: 1px solid var(--border-soft);
+        padding: 0.85rem 1rem;
+        font: inherit;
+        background: rgba(255, 255, 255, 0.9);
+        box-shadow: inset 0 1px 2px rgba(15, 23, 42, 0.06);
+      }
+
+      textarea {
+        resize: vertical;
+      }
+
+      input:focus,
+      textarea:focus,
+      select:focus {
+        outline: 2px solid rgba(37, 99, 235, 0.35);
+        border-color: rgba(37, 99, 235, 0.6);
+      }
+
+      .steps {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: grid;
+        gap: 1.25rem;
+      }
+
+      .steps li {
+        display: grid;
+        gap: 0.35rem;
+        background: #fff;
+        border-radius: 1rem;
+        padding: 1.35rem 1.5rem;
+        border: 1px solid var(--border-soft);
+      }
+
+      details {
+        border-radius: 1rem;
+        border: 1px solid var(--border-soft);
+        padding: 1.5rem;
+        background: #fff;
+        box-shadow: 0 12px 28px rgba(15, 23, 42, 0.06);
+      }
+
+      summary {
+        font-weight: 600;
+        cursor: pointer;
+        font-family: "Montserrat", sans-serif;
+      }
+
+      details[open] {
+        border-color: rgba(29, 78, 216, 0.35);
+      }
+
+      .stack {
+        display: grid;
+        gap: 1.25rem;
+      }
+
+      .testimonials {
+        display: grid;
+        gap: 1.5rem;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+
+      th,
+      td {
+        text-align: left;
+        padding: 0.75rem 1rem;
+        border-bottom: 1px solid var(--border-soft);
+      }
+
+      thead th {
+        font-weight: 600;
+        font-family: "Montserrat", sans-serif;
+      }
+
+      blockquote {
+        margin: 0;
+        padding: 0;
+      }
+
+      .testimonial {
+        background: #fff;
+        border-radius: 1.25rem;
+        padding: 1.75rem;
+        border: 1px solid var(--border-soft);
+        box-shadow: 0 18px 35px rgba(15, 23, 42, 0.09);
+      }
+
+      .cta-band {
+        background: linear-gradient(130deg, var(--brand-primary), var(--brand-secondary));
+        color: #fff;
+        border-radius: calc(var(--radius-lg) * 1.1);
+        padding: 3rem 2.5rem;
+        text-align: center;
+        box-shadow: 0 28px 60px rgba(29, 78, 216, 0.35);
+      }
+
+      footer {
+        padding: 3rem 1.5rem;
+        background: #0b1120;
+        color: rgba(226, 232, 240, 0.85);
+      }
+
+      footer a {
+        color: rgba(255, 255, 255, 0.9);
+      }
+
+      .footer__inner {
+        max-width: 1180px;
+        margin: 0 auto;
+        display: grid;
+        gap: 1.5rem;
+      }
+
+      .footer__meta {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        gap: 1rem;
+        align-items: center;
+      }
+
+      .footer__links {
+        display: grid;
+        gap: 0.75rem;
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+    </style>
   </head>
   <body>
-    <%= yield %>
+    <div class="page">
+      <header class="navbar">
+        <div class="navbar__inner">
+          <a class="navbar__brand" href="#inicio">
+            <span>Homason</span>
+            <span class="tag">Obras sin sorpresas</span>
+          </a>
+          <nav aria-label="Principal">
+            <ul class="navbar__menu">
+              <li><a href="#como-funciona">Cómo funciona</a></li>
+              <li><a href="#planes">Planes</a></li>
+              <li><a href="#calidad">Calidad</a></li>
+              <li><a href="#materiales">Materiales</a></li>
+              <li><a href="#faq">FAQ</a></li>
+            </ul>
+          </nav>
+          <a class="navbar__cta" href="#contacto">Agenda tu visita</a>
+        </div>
+      </header>
+      <main id="inicio">
+        <%= yield %>
+      </main>
+      <footer>
+        <div class="footer__inner" id="contacto">
+          <div class="footer__meta">
+            <div>
+              <strong>Homason</strong><br />
+              Gestión integral de reformas con profesionales certificados.
+            </div>
+            <div>
+              <a class="btn btn--ghost" href="mailto:hola@homason.com">hola@homason.com</a>
+            </div>
+          </div>
+          <ul class="footer__links">
+            <li>Teléfono: <a href="tel:+34911223344">+34 911 223 344</a></li>
+            <li>Oficinas: Paseo de la Castellana 200, Madrid</li>
+            <li>Horario de atención: Lunes a sábado, 9:00 – 20:00</li>
+          </ul>
+          <p>&copy; <%= Time.current.year %> Homason. Todos los derechos reservados.</p>
+        </div>
+      </footer>
+    </div>
   </body>
 </html>
