@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_11_08_164000) do
+ActiveRecord::Schema[8.0].define(version: 2025_11_10_190604) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -25,9 +25,28 @@ ActiveRecord::Schema[8.0].define(version: 2025_11_08_164000) do
     t.bigint "subscription_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.jsonb "attachments", default: [], null: false
     t.index ["customer_id"], name: "index_bookings_on_customer_id"
     t.index ["professional_profile_id"], name: "index_bookings_on_professional_profile_id"
     t.index ["subscription_id"], name: "index_bookings_on_subscription_id"
+  end
+
+  create_table "leads", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "email"
+    t.string "phone"
+    t.string "status", default: "new", null: false
+    t.string "source"
+    t.text "notes"
+    t.bigint "customer_id"
+    t.bigint "professional_profile_id"
+    t.datetime "follow_up_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["customer_id"], name: "index_leads_on_customer_id"
+    t.index ["follow_up_at"], name: "index_leads_on_follow_up_at"
+    t.index ["professional_profile_id"], name: "index_leads_on_professional_profile_id"
+    t.index ["status"], name: "index_leads_on_status"
   end
 
   create_table "material_orders", force: :cascade do |t|
@@ -97,11 +116,15 @@ ActiveRecord::Schema[8.0].define(version: 2025_11_08_164000) do
     t.string "password_digest", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "phone"
+    t.string "address"
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
   add_foreign_key "bookings", "professional_profiles"
   add_foreign_key "bookings", "users", column: "customer_id"
+  add_foreign_key "leads", "professional_profiles"
+  add_foreign_key "leads", "users", column: "customer_id"
   add_foreign_key "material_orders", "bookings"
   add_foreign_key "professional_profiles", "users"
   add_foreign_key "reviews", "bookings"

@@ -2,6 +2,6 @@ class HomeController < ApplicationController
   layout "marketing"
 
   def index
-    render template: "home/index"
+    render "home/index"
   end
 end

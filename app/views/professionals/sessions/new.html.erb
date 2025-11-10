@@ -1,0 +1,59 @@
+<%= render "shared/auth_styles" %>
+
+<section class="auth-page">
+  <div class="auth-card">
+    <div class="auth-card__header">
+      <span class="auth-card__eyebrow">Profesionales Homason</span>
+      <h1>Inicia sesión y gestiona tus obras</h1>
+      <p class="auth-card__subtitle">
+        Accede a tu espacio profesional para revisar trabajos asignados, coordinar materiales y mantener tus leads siempre al día.
+      </p>
+    </div>
+
+    <%= form_with url: login_path, method: :post, local: true, html: { class: "auth-form" } do |form| %>
+      <div class="auth-form__group">
+        <%= form.label :email, "Correo electrónico" %>
+        <%= form.email_field :email, required: true, autocomplete: "email" %>
+      </div>
+
+      <div class="auth-form__group">
+        <%= form.label :password, "Contraseña" %>
+        <%= form.password_field :password, required: true, autocomplete: "current-password" %>
+        <p class="auth-form__hint">Si olvidaste tu contraseña, contacta con el equipo de soporte para restablecerla.</p>
+      </div>
+
+      <%= form.hidden_field :role, value: "professional" %>
+
+      <div class="auth-form__actions">
+        <%= form.submit "Entrar en mi panel", class: "btn btn--primary" %>
+        <span>¿Nuevo en Homason? <a class="auth-link" href="<%= professionals_signup_path %>">Crea tu cuenta profesional</a></span>
+      </div>
+    <% end %>
+
+    <div class="auth-form__footer">
+      Al iniciar sesión aceptas las condiciones de colaboración de Homason y te comprometes a mantener actualizada la información de tus proyectos.
+    </div>
+  </div>
+
+  <aside class="auth-side-panel">
+    <h2 class="auth-side-panel__title">Todo tu negocio de reformas en una sola vista</h2>
+    <ul class="auth-benefits">
+      <li>
+        <strong>Agenda coordinada</strong>
+        Visualiza próximas visitas, fases de obra y recordatorios de seguimiento.
+      </li>
+      <li>
+        <strong>Clientes informados</strong>
+        Consulta el estado de cada lead y envía actualizaciones con un clic.
+      </li>
+      <li>
+        <strong>Materiales y pedidos</strong>
+        Confirma entregas, sube evidencias y asegura que cada obra avance sin bloqueos.
+      </li>
+    </ul>
+    <div class="auth-meta">
+      <strong>¿Necesitas ayuda?</strong>
+      Escríbenos a <a class="auth-link" href="mailto:partners@homason.com">partners@homason.com</a> o llámanos al <a class="auth-link" href="tel:+34911223344">+34 911 223 344</a>.
+    </div>
+  </aside>
+</section>

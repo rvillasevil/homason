@@ -58,6 +58,6 @@ class BookingsController < ApplicationController
   end
 
   def update_booking_params
-    booking_params.merge(params.require(:booking).permit(:status))
+    params.require(:booking).permit(:professional_profile_id, :date, :days, :address, :description, :subscription_id, attachments: [])
   end
 end
