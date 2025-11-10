@@ -1,21 +1,22 @@
 <section class="section" id="materiales" aria-labelledby="materials-heading">
   <div class="section__inner split">
     <div class="card stack">
-      <p class="section__eyebrow">Gestión de materiales</p>
-      <h2 id="materials-heading">Elige si compras por tu cuenta o delegas todo a Homason</h2>
+      <p class="section__eyebrow">Materiales y extras</p>
+      <h2 id="materials-heading">Controla cada euro invertido en tu reforma</h2>
       <p>
-        Transparencia absoluta en precios. Puedes subir tus propias facturas o activar nuestro servicio de compra con
-        márgenes visibles y logística incluida. Todas las órdenes quedan asociadas al booking correspondiente.
+        Decide si quieres comprar los materiales directamente o delegar en nuestro equipo de compras. Siempre verás el coste
+        de origen, nuestro margen de gestión y el estado logístico asociado a cada jornada de trabajo.
       </p>
       <ul class="steps">
         <li>
-          <strong>Catálogo inteligente.</strong> Selecciona acabados y marcas recomendadas según tu presupuesto.
+          <strong>Precios comparados.</strong> Te mostramos proveedores recomendados y la opción de subir tus propias
+          facturas.
         </li>
         <li>
-          <strong>Autogestión.</strong> Indica que aportarás materiales propios y te recordamos hitos de entrega.
+          <strong>Entrega sincronizada.</strong> Vinculamos cada pedido a las jornadas reservadas para que no haya paradas.
         </li>
         <li>
-          <strong>Compra asistida.</strong> Confirmamos cantidades, negociamos precios y adelantamos pagos por ti.
+          <strong>Financiación opcional.</strong> Accede a líneas de pago aplazado sin perder visibilidad de los márgenes.
         </li>
       </ul>
     </div>
@@ -26,20 +27,25 @@
           <thead>
             <tr>
               <th>Opción</th>
-              <th>Responsable</th>
-              <th>Ventajas</th>
+              <th>Coste visible</th>
+              <th>Ideal para</th>
             </tr>
           </thead>
           <tbody>
             <tr>
               <td>Material propio</td>
-              <td>Cliente</td>
-              <td>Control total del presupuesto y elección de marcas favoritas.</td>
+              <td>Factura del proveedor + €0 de gestión</td>
+              <td>Clientes con acuerdos previos o marcas específicas.</td>
             </tr>
             <tr>
-              <td>Pedido Homason</td>
-              <td>Homason</td>
-              <td>Negociamos descuentos, gestionamos logística y almacenamiento.</td>
+              <td>Pedido gestionado</td>
+              <td>Factura del proveedor + 8% de servicio</td>
+              <td>Obras que buscan delegar logística y control de stock.</td>
+            </tr>
+            <tr>
+              <td>Pedido financiado</td>
+              <td>Proveedor + 8% servicio + 1,2%/mes financiación</td>
+              <td>Promotores que necesitan alinear pagos con hitos de obra.</td>
             </tr>
           </tbody>
         </table>
@@ -48,18 +54,18 @@
         <h3>Solicitar pedido de materiales</h3>
         <form class="stack" aria-label="Formulario de pedido de materiales">
           <label>
-            <span>Booking asociado</span>
-            <input type="text" name="booking" placeholder="ID de reserva" />
+            <span>Reserva vinculada</span>
+            <input type="text" name="booking" placeholder="ID-RESERVA-2043" />
           </label>
           <label>
             <span>Listado de materiales</span>
-            <textarea name="items" rows="4" placeholder="Azulejo porcelánico 30m², pintura plástica 60L"></textarea>
+            <textarea name="items" rows="4" placeholder="Azulejo porcelánico 30m², microcemento baño 12m²"></textarea>
           </label>
           <label>
-            <span>¿Quién paga?</span>
+            <span>Modo de pago</span>
             <select name="pago">
-              <option value="cliente" selected>Yo adelanto el pago</option>
-              <option value="homason">Quiero financiación Homason</option>
+              <option value="cliente" selected>Pago directo (sin margen)</option>
+              <option value="homason">Delegar y financiar con Homason</option>
             </select>
           </label>
           <button type="submit" class="btn btn--primary">Crear solicitud</button>

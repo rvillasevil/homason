@@ -1,0 +1,55 @@
+<section class="section" aria-labelledby="booking-heading">
+  <div class="section__inner split">
+    <div class="stack">
+      <p class="section__eyebrow">Reserva y seguimiento</p>
+      <h2 id="booking-heading">Gestiona jornadas de obra como reservas hoteleras</h2>
+      <p>
+        Escoge perfiles, confirma fechas y recibe confirmación instantánea. Cada jornada queda asociada a tu contrato
+        transparente con detalle de coste, materiales y avances verificables.
+      </p>
+      <ul class="steps">
+        <li>
+          <strong>Reserva en 3 clics.</strong> Selecciona profesional, días y añade instrucciones específicas para la obra.
+        </li>
+        <li>
+          <strong>Checklist diario.</strong> Cerramos cada jornada con fotos, incidencias resueltas y aprobación digital.
+        </li>
+        <li>
+          <strong>Reprograma sin fricción.</strong> Cancela o mueve jornadas desde tu panel y recalculamos el saldo al
+          instante.
+        </li>
+      </ul>
+    </div>
+    <div class="card stack" role="presentation">
+      <h3>Simulador de reserva transparente</h3>
+      <form class="stack" aria-label="Simulador de reserva">
+        <label>
+          <span>Perfil profesional</span>
+          <select name="perfil">
+            <option>Oficial albañil senior · €210/día</option>
+            <option>Jefe de obra · €320/día</option>
+            <option>Equipo de acabados · €260/día</option>
+          </select>
+        </label>
+        <label>
+          <span>Fecha de inicio</span>
+          <input type="date" name="fecha_inicio" />
+        </label>
+        <label>
+          <span>Días reservados</span>
+          <input type="number" name="dias" min="1" value="5" />
+        </label>
+        <label>
+          <span>Plan asociado</span>
+          <select name="suscripcion">
+            <option>Pack Transparente (12 jornadas disponibles)</option>
+            <option>Pack Inicio (4 jornadas disponibles)</option>
+            <option>Pago por jornada</option>
+          </select>
+        </label>
+        <button type="submit" class="btn btn--primary">Generar reserva</button>
+        <small>Transparencia total: mostramos coste estimado al instante y enviamos contrato digital para firma.</small>
+      </form>
+    </div>
+  </div>
+</section>
