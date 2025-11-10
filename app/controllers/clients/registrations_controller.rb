@@ -1,4 +1,4 @@
-module Professionals
+module Clients
   class RegistrationsController < ApplicationController
     layout "marketing"
 
