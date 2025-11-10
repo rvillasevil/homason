@@ -1,5 +1,9 @@
-class ApplicationController < ActionController::API
+class ApplicationController < ActionController::Base
+  protect_from_forgery with: :null_session
+
   before_action :set_current_user
+
+  layout false
 
   attr_reader :current_user
 
