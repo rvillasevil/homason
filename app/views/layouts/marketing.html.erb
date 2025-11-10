@@ -167,16 +167,18 @@
         transform: scaleX(1);
       }
 
-      .navbar__cta {
-        display: inline-flex;
+      .navbar__actions {
+        display: flex;
         align-items: center;
-        gap: 0.5rem;
-        background: var(--text-strong);
-        color: #fff;
-        padding: 0.75rem 1.4rem;
-        border-radius: 999px;
-        font-weight: 600;
-        box-shadow: 0 18px 40px rgba(31, 26, 61, 0.22);
+        justify-content: flex-end;
+        flex-wrap: wrap;
+        gap: 0.65rem;
+        margin-left: auto;
+      }
+
+      .navbar__actions .btn {
+        font-size: 0.9rem;
+        padding: 0.65rem 1.4rem;
       }
 
       @media (max-width: 900px) {
@@ -184,8 +186,22 @@
           display: none;
         }
 
-        .navbar__cta {
-          margin-left: auto;
+        .navbar__actions {
+          width: 100%;
+          justify-content: center;
+          margin-left: 0;
+        }
+      }
+
+      @media (max-width: 720px) {
+        .navbar__inner {
+          flex-wrap: wrap;
+          justify-content: center;
+        }
+
+        .navbar__actions .btn {
+          width: 100%;
+          justify-content: center;
         }
       }
 
@@ -660,7 +676,15 @@
               <li><a href="#faq">FAQ</a></li>
             </ul>
           </nav>
-          <a class="navbar__cta" href="#contacto">Agenda una demo</a>
+          <div class="navbar__actions" role="group" aria-label="Accesos rápidos">
+            <a class="btn btn--ghost" href="<%= professionals_dashboard_path %>">Dashboard profesionales</a>
+            <a class="btn btn--ghost" href="<%= clients_dashboard_path %>">Dashboard clientes</a>
+            <a class="btn btn--outline" href="<%= professionals_signup_path %>">Nuevo profesional</a>
+            <a class="btn btn--outline" href="<%= clients_signup_path %>">Nuevo cliente</a>
+            <a class="btn btn--primary" href="<%= professionals_login_path %>">Nueva sesión profesional</a>
+            <a class="btn btn--primary" href="<%= clients_login_path %>">Nueva sesión cliente</a>
+            <a class="btn btn--primary" href="#contacto">Agenda una demo</a>
+          </div>
         </div>
       </header>
       <main id="inicio">
