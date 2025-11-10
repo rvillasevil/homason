@@ -1,0 +1,166 @@
+<div class="grid two-columns">
+  <section class="card">
+    <h2>Resumen de reservas</h2>
+    <p><strong>Total:</strong> <%= @bookings.count %></p>
+    <p><strong>Próximas:</strong> <%= @upcoming_bookings.count %></p>
+    <p><strong>Pagos activos:</strong> <%= @subscriptions.active.count %></p>
+    <p class="muted">Actualizado el <%= l(Time.zone.now, format: :long) %></p>
+  </section>
+
+  <section class="card">
+    <h2>Próximas citas</h2>
+    <% if @upcoming_bookings.any? %>
+      <table>
+        <thead>
+          <tr>
+            <th>Fecha</th>
+            <th>Profesional</th>
+            <th>Estado</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @upcoming_bookings.each do |booking| %>
+            <tr>
+              <td><%= l(booking.date, format: :long) %></td>
+              <td><%= booking.professional_profile&.user&.name || "Sin asignar" %></td>
+              <td><span class="status" data-status="<%= booking.status %>"><%= booking.status.humanize %></span></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    <% else %>
+      <p class="muted">No hay citas próximas. Agenda una nueva reserva desde la app.</p>
+    <% end %>
+  </section>
+</div>
+
+<section class="card" style="margin-top: 1.5rem;">
+  <h2>Gestión de reservas</h2>
+  <% if @bookings.any? %>
+    <table>
+      <thead>
+        <tr>
+          <th>Fecha</th>
+          <th>Profesional</th>
+          <th>Estado</th>
+          <th>Dirección</th>
+          <th>Materiales</th>
+          <th>Archivos</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @bookings.each do |booking| %>
+          <tr>
+            <td><%= l(booking.date, format: :long) %></td>
+            <td><%= booking.professional_profile&.user&.name || "Sin asignar" %></td>
+            <td><span class="status" data-status="<%= booking.status %>"><%= booking.status.humanize %></span></td>
+            <td><%= booking.address %></td>
+            <td>
+              <% if booking.material_order.present? %>
+                <span class="status" data-status="<%= booking.material_order.status %>">Pedido <%= booking.material_order.status.humanize %></span>
+              <% else %>
+                <span class="muted">Sin pedidos</span>
+              <% end %>
+            </td>
+            <td>
+              <% if booking.attachments.any? %>
+                <div class="attachments">
+                  <% booking.attachments.each_with_index do |url, idx| %>
+                    <a href="<%= url %>" target="_blank" rel="noopener">Archivo <%= idx + 1 %></a>
+                  <% end %>
+                </div>
+              <% else %>
+                <span class="muted">Sin archivos</span>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% else %>
+    <p class="muted">Aún no has reservado servicios. Descubre profesionales en Homason.</p>
+  <% end %>
+</section>
+
+<section class="card" style="margin-top: 1.5rem;">
+  <h2>Pagos y suscripciones</h2>
+  <% if @subscriptions.any? %>
+    <table>
+      <thead>
+        <tr>
+          <th>Plan</th>
+          <th>Precio</th>
+          <th>Estado</th>
+          <th>Inicio</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @subscriptions.each do |subscription| %>
+          <tr>
+            <td><%= subscription.subscription_plan.name %></td>
+            <% price_cents = subscription.subscription_plan.price_cents || 0 %>
+            <td><%= number_to_currency(price_cents / 100.0) %></td>
+            <td><span class="status" data-status="<%= subscription.active? ? "confirmed" : "cancelled" %>"><%= subscription.active? ? "Activa" : "Cancelada" %></span></td>
+            <td><%= subscription.started_at ? l(subscription.started_at, format: :long) : "—" %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% else %>
+    <p class="muted">No tienes suscripciones activas. Consulta nuestros planes para obtener beneficios.</p>
+  <% end %>
+</section>
+
+<section class="card" style="margin-top: 1.5rem;">
+  <h2>Leads y solicitudes</h2>
+  <% if @leads.any? %>
+    <table>
+      <thead>
+        <tr>
+          <th>Profesional</th>
+          <th>Estado</th>
+          <th>Seguimiento</th>
+          <th>Notas</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @leads.each do |lead| %>
+          <tr>
+            <td><%= lead.professional_profile&.user&.name || "Sin asignar" %></td>
+            <td><span class="status" data-status="<%= lead.status %>"><%= lead.status.humanize %></span></td>
+            <td><%= lead.follow_up_at ? l(lead.follow_up_at, format: :short) : "—" %></td>
+            <td><%= lead.notes.to_s.truncate(80) %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% else %>
+    <p class="muted">Sin solicitudes en seguimiento. Envía una nueva consulta para recibir propuestas.</p>
+  <% end %>
+</section>
+
+<section class="card" style="margin-top: 1.5rem;">
+  <h2>Pedidos de materiales</h2>
+  <% if @material_orders.any? %>
+    <table>
+      <thead>
+        <tr>
+          <th>Reserva</th>
+          <th>Estado</th>
+          <th>Creado</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @material_orders.each do |order| %>
+          <tr>
+            <td><%= l(order.booking.date, format: :short) %> · <%= order.booking.description.truncate(40) %></td>
+            <td><span class="status" data-status="<%= order.status %>"><%= order.status.humanize %></span></td>
+            <td><%= l(order.created_at, format: :short) %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% else %>
+    <p class="muted">No tienes pedidos de materiales abiertos.</p>
+  <% end %>
+</section>

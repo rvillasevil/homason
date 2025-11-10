@@ -54,7 +54,7 @@ class BookingsController < ApplicationController
   end
 
   def booking_params
-    params.require(:booking).permit(:professional_profile_id, :date, :days, :address, :description, :subscription_id)
+    params.require(:booking).permit(:professional_profile_id, :date, :days, :address, :description, :subscription_id, attachments: [])
   end
 
   def update_booking_params

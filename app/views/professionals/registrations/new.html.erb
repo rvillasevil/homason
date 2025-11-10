@@ -1,0 +1,82 @@
+<%= render "shared/auth_styles" %>
+
+<section class="auth-page">
+  <div class="auth-card">
+    <div class="auth-card__header">
+      <span class="auth-card__eyebrow">Únete como profesional</span>
+      <h1>Crea tu cuenta para recibir trabajos de Homason</h1>
+      <p class="auth-card__subtitle">
+        Completa el formulario y en menos de 24 horas nuestro equipo validará tus credenciales para empezar a asignarte proyectos alineados con tu experiencia.
+      </p>
+    </div>
+
+    <%= form_with url: signup_path, method: :post, local: true, html: { class: "auth-form" } do |form| %>
+      <div class="auth-form__group">
+        <%= form.label :name, "Nombre y apellidos" %>
+        <%= form.text_field :name, required: true, autocomplete: "name" %>
+      </div>
+
+      <div class="auth-form__group">
+        <%= form.label :email, "Correo profesional" %>
+        <%= form.email_field :email, required: true, autocomplete: "email" %>
+      </div>
+
+      <div class="auth-form__group">
+        <%= form.label :phone, "Teléfono de contacto" %>
+        <%= form.telephone_field :phone, required: true, autocomplete: "tel" %>
+      </div>
+
+      <div class="auth-form__group">
+        <%= form.label :address, "Zona de trabajo principal" %>
+        <%= form.text_field :address, placeholder: "Ej. Madrid, zona norte", required: true, autocomplete: "address-level2" %>
+      </div>
+
+      <div class="auth-form__group">
+        <%= form.label :password, "Crea tu contraseña" %>
+        <%= form.password_field :password, required: true, autocomplete: "new-password", minlength: 8 %>
+        <p class="auth-form__hint">Usa al menos 8 caracteres con números y letras.</p>
+      </div>
+
+      <div class="auth-form__group">
+        <%= form.label :password_confirmation, "Confirma tu contraseña" %>
+        <%= form.password_field :password_confirmation, required: true, autocomplete: "new-password", minlength: 8 %>
+      </div>
+
+      <%= form.hidden_field :role, value: "professional" %>
+
+      <label class="auth-checkbox">
+        <%= check_box_tag :accept_terms, "1", false, required: true %>
+        <span>
+          Confirmo que la información proporcionada es verídica y acepto las <a class="auth-link" href="#">condiciones del programa de profesionales</a>.
+        </span>
+      </label>
+
+      <div class="auth-form__actions">
+        <%= form.submit "Solicitar alta", class: "btn btn--primary" %>
+        <span>¿Ya tienes cuenta? <a class="auth-link" href="<%= professionals_login_path %>">Inicia sesión</a></span>
+      </div>
+    <% end %>
+  </div>
+
+  <aside class="auth-side-panel">
+    <h2 class="auth-side-panel__title">Una red de expertos en reformas con procesos claros</h2>
+    <ul class="auth-benefits">
+      <li>
+        <strong>Proyectos filtrados</strong>
+        Recibe solicitudes que encajan con tu especialidad, tamaño de equipo y disponibilidad.
+      </li>
+      <li>
+        <strong>Pagos garantizados</strong>
+        Factura a Homason y olvídate de perseguir cobros: gestionamos el ciclo financiero por ti.
+      </li>
+      <li>
+        <strong>Soporte dedicado</strong>
+        Un project manager te acompaña durante toda la obra para resolver incidencias.
+      </li>
+    </ul>
+    <div class="auth-meta">
+      <strong>Requisitos mínimos</strong>
+      <span>Seguro de responsabilidad civil vigente, referencias de proyectos y cumplimiento de normativa PRL.</span>
+    </div>
+  </aside>
+</section>

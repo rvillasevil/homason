@@ -15,4 +15,12 @@ class Booking < ApplicationRecord
 
   validates :date, :days, :address, :description, presence: true
   validates :days, numericality: { greater_than: 0 }
+
+  before_validation :normalize_attachments
+
+  private
+
+  def normalize_attachments
+    self.attachments = Array(attachments).map(&:presence).compact
+  end
 end

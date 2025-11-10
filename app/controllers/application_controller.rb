@@ -6,6 +6,7 @@ class ApplicationController < ActionController::Base
   layout false
 
   attr_reader :current_user
+  helper_method :current_user
 
   private
 

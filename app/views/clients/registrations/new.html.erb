@@ -1,0 +1,81 @@
+<%= render "shared/auth_styles" %>
+
+<section class="auth-page">
+  <div class="auth-card">
+    <div class="auth-card__header">
+      <span class="auth-card__eyebrow">Reserva tu reforma</span>
+      <h1>Crea tu cuenta como cliente Homason</h1>
+      <p class="auth-card__subtitle">
+        Diseñamos una experiencia digital para que tengas visibilidad total de tu proyecto, desde la planificación hasta la entrega final.
+      </p>
+    </div>
+
+    <%= form_with url: signup_path, method: :post, local: true, html: { class: "auth-form" } do |form| %>
+      <div class="auth-form__group">
+        <%= form.label :name, "Nombre completo" %>
+        <%= form.text_field :name, required: true, autocomplete: "name" %>
+      </div>
+
+      <div class="auth-form__group">
+        <%= form.label :email, "Correo electrónico" %>
+        <%= form.email_field :email, required: true, autocomplete: "email" %>
+      </div>
+
+      <div class="auth-form__group">
+        <%= form.label :phone, "Teléfono" %>
+        <%= form.telephone_field :phone, required: true, autocomplete: "tel" %>
+      </div>
+
+      <div class="auth-form__group">
+        <%= form.label :address, "Dirección de la obra" %>
+        <%= form.text_field :address, required: true, autocomplete: "street-address" %>
+      </div>
+
+      <div class="auth-form__group">
+        <%= form.label :password, "Contraseña" %>
+        <%= form.password_field :password, required: true, autocomplete: "new-password", minlength: 8 %>
+      </div>
+
+      <div class="auth-form__group">
+        <%= form.label :password_confirmation, "Confirmar contraseña" %>
+        <%= form.password_field :password_confirmation, required: true, autocomplete: "new-password", minlength: 8 %>
+      </div>
+
+      <%= form.hidden_field :role, value: "customer" %>
+
+      <label class="auth-checkbox">
+        <%= check_box_tag :accept_terms, "1", false, required: true %>
+        <span>
+          Acepto las <a class="auth-link" href="#">condiciones generales</a> y autorizo a Homason a contactarme para coordinar mi reforma.
+        </span>
+      </label>
+
+      <div class="auth-form__actions">
+        <%= form.submit "Crear cuenta", class: "btn btn--primary" %>
+        <span>¿Ya tienes cuenta? <a class="auth-link" href="<%= clients_login_path %>">Inicia sesión</a></span>
+      </div>
+    <% end %>
+  </div>
+
+  <aside class="auth-side-panel">
+    <h2 class="auth-side-panel__title">Tu project manager siempre contigo</h2>
+    <ul class="auth-benefits">
+      <li>
+        <strong>Planificación transparente</strong>
+        Recibe el cronograma de obra y los hitos clave para cada semana.
+      </li>
+      <li>
+        <strong>Documentación centralizada</strong>
+        Presupuestos, pedidos de materiales y actas en un solo lugar seguro.
+      </li>
+      <li>
+        <strong>Alertas inteligentes</strong>
+        Notificaciones de cambios de fecha, aprobaciones pendientes y entregas.
+      </li>
+    </ul>
+    <div class="auth-meta">
+      <strong>¿Quieres hablar con nosotros?</strong>
+      Agenda una llamada en <a class="auth-link" href="mailto:hola@homason.com">hola@homason.com</a> y te ayudamos a preparar tu proyecto.
+    </div>
+  </aside>
+</section>
