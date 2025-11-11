@@ -677,12 +677,12 @@
             </ul>
           </nav>
           <div class="navbar__actions" role="group" aria-label="Accesos rápidos">
-            <a class="btn btn--ghost" href="<%= professionals_dashboard_path %>">Dashboard profesionales</a>
-            <a class="btn btn--ghost" href="<%= clients_dashboard_path %>">Dashboard clientes</a>
-            <a class="btn btn--outline" href="<%= professionals_signup_path %>">Nuevo profesional</a>
-            <a class="btn btn--outline" href="<%= clients_signup_path %>">Nuevo cliente</a>
-            <a class="btn btn--primary" href="<%= professionals_login_path %>">Nueva sesión profesional</a>
-            <a class="btn btn--primary" href="<%= clients_login_path %>">Nueva sesión cliente</a>
+            <%= link_to "Dashboard profesionales", professionals_dashboard_path, class: "btn btn--ghost" %>
+            <%= link_to "Dashboard clientes", clients_dashboard_path, class: "btn btn--ghost" %>
+            <%= link_to "Nuevo profesional", professionals_signup_path, class: "btn btn--outline" %>
+            <%= link_to "Nuevo cliente", clients_signup_path, class: "btn btn--outline" %>
+            <%= link_to "Nueva sesión profesional", professionals_login_path, class: "btn btn--primary" %>
+            <%= link_to "Nueva sesión cliente", clients_login_path, class: "btn btn--primary" %>
             <a class="btn btn--primary" href="#contacto">Agenda una demo</a>
           </div>
         </div>

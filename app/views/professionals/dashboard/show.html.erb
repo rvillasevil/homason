@@ -76,7 +76,7 @@
               <% if booking.attachments.any? %>
                 <div class="attachments">
                   <% booking.attachments.each_with_index do |url, idx| %>
-                    <a href="<%= url %>" target="_blank" rel="noopener">Archivo <%= idx + 1 %></a>
+                    <%= link_to "Archivo #{idx + 1}", url, target: "_blank", rel: "noopener" %>
                   <% end %>
                 </div>
               <% else %>

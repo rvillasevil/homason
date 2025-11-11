@@ -53,7 +53,10 @@
 
       <div class="auth-form__actions">
         <%= form.submit "Solicitar alta", class: "btn btn--primary" %>
-        <span>¿Ya tienes cuenta? <a class="auth-link" href="<%= professionals_login_path %>">Inicia sesión</a></span>
+        <span>
+          ¿Ya tienes cuenta?
+          <%= link_to "Inicia sesión", professionals_login_path, class: "auth-link" %>
+        </span>
       </div>
     <% end %>
   </div>

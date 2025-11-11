@@ -25,8 +25,10 @@
 
       <div class="auth-form__actions">
         <%= form.submit "Entrar en mi cuenta", class: "btn btn--primary" %>
-        <span>¿Aún no eres cliente? <a class="auth-link" href="<%= clients_signup_path %>">Reserva tu primera obra</a></span>
-      </div>
+        <span>
+          ¿Aún no eres cliente?
+          <%= link_to "Reserva tu primera obra", clients_signup_path, class: "auth-link" %>
+        </span>      </div>
     <% end %>
 
     <div class="auth-form__footer">

@@ -26,7 +26,10 @@
 
       <div class="auth-form__actions">
         <%= form.submit "Entrar en mi panel", class: "btn btn--primary" %>
-        <span>¿Nuevo en Homason? <a class="auth-link" href="<%= professionals_signup_path %>">Crea tu cuenta profesional</a></span>
+        <span>
+          ¿Nuevo en Homason?
+          <%= link_to "Crea tu cuenta profesional", professionals_signup_path, class: "auth-link" %>
+        </span>
       </div>
     <% end %>
 

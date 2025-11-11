@@ -1,7 +1,7 @@
-class HomeController < ApplicationController
-  layout "marketing"
+class HomeController < ActionController::Base
+layout "marketing"
 
   def index
-    render "home/index"
+    render template: "home/index"
   end
 end

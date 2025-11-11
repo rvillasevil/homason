@@ -33,10 +33,10 @@
       <h1>Homason · Panel</h1>
       <nav>
         <% if current_user&.professional? %>
-          <a href="<%= professionals_dashboard_path %>">Panel profesional</a>
+          <%= link_to "Panel profesional", professionals_dashboard_path %>
         <% end %>
         <% if current_user&.customer? %>
-          <a href="<%= clients_dashboard_path %>">Panel cliente</a>
+          <%= link_to "Panel cliente", clients_dashboard_path %>
         <% end %>
       </nav>
     </header>
