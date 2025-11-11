@@ -168,17 +168,51 @@
       }
 
       .navbar__actions {
-        display: flex;
-        align-items: center;
-        justify-content: flex-end;
-        flex-wrap: wrap;
-        gap: 0.65rem;
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr)) auto;
+        gap: 1rem;
+        align-items: stretch;
         margin-left: auto;
       }
 
-      .navbar__actions .btn {
+      .navbar__cluster {
+        display: grid;
+        gap: 0.6rem;
+        padding: 1rem 1.25rem;
+        border-radius: var(--radius-lg);
+        background: rgba(255, 255, 255, 0.92);
+        border: 1px solid rgba(76, 62, 237, 0.16);
+        box-shadow: var(--shadow-md);
+        min-width: 240px;
+      }
+
+      .navbar__cluster-title {
+        font-size: 0.75rem;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        font-weight: 700;
+        color: var(--text-soft);
+      }
+
+      .navbar__cluster-actions {        
+        display: flex;
+        flex-wrap: wrap;
+      }
+      .navbar__cluster-actions .btn {
+        flex: 1 1 48%;
+        min-width: 130px;
         font-size: 0.9rem;
-        padding: 0.65rem 1.4rem;
+        padding: 0.6rem 1rem;
+      }
+
+      .navbar__cta {
+        align-self: center;
+      }
+
+      .navbar__cta .btn {
+        font-size: 0.95rem;
+        padding: 0.75rem 1.8rem;
+        white-space: nowrap;
       }
 
       @media (max-width: 900px) {
@@ -188,7 +222,7 @@
 
         .navbar__actions {
           width: 100%;
-          justify-content: center;
+          grid-template-columns: 1fr;
           margin-left: 0;
         }
       }
@@ -199,9 +233,17 @@
           justify-content: center;
         }
 
-        .navbar__actions .btn {
+        .navbar__cluster-actions {
+          flex-direction: column;
+        }
+
+        .navbar__cluster-actions .btn {
+          flex: 1 1 auto;
           width: 100%;
-          justify-content: center;
+        }
+
+        .navbar__cta {  
+          width: 100%;
         }
       }
 
@@ -677,13 +719,25 @@
             </ul>
           </nav>
           <div class="navbar__actions" role="group" aria-label="Accesos rápidos">
-            <%= link_to "Dashboard profesionales", professionals_dashboard_path, class: "btn btn--ghost" %>
-            <%= link_to "Dashboard clientes", clients_dashboard_path, class: "btn btn--ghost" %>
-            <%= link_to "Nuevo profesional", professionals_signup_path, class: "btn btn--outline" %>
-            <%= link_to "Nuevo cliente", clients_signup_path, class: "btn btn--outline" %>
-            <%= link_to "Nueva sesión profesional", professionals_login_path, class: "btn btn--primary" %>
-            <%= link_to "Nueva sesión cliente", clients_login_path, class: "btn btn--primary" %>
-            <a class="btn btn--primary" href="#contacto">Agenda una demo</a>
+            <div class="navbar__cluster" role="group" aria-label="Área de profesionales">
+              <span class="navbar__cluster-title">Profesionales</span>
+              <div class="navbar__cluster-actions">
+                <%= link_to "Dashboard", professionals_dashboard_path, class: "btn btn--ghost" %>
+                <%= link_to "Nueva sesión", professionals_login_path, class: "btn btn--primary" %>
+                <%= link_to "Crear cuenta", professionals_signup_path, class: "btn btn--outline" %>
+              </div>
+            </div>
+            <div class="navbar__cluster" role="group" aria-label="Área de clientes">
+              <span class="navbar__cluster-title">Clientes</span>
+              <div class="navbar__cluster-actions">
+                <%= link_to "Dashboard", clients_dashboard_path, class: "btn btn--ghost" %>
+                <%= link_to "Nueva sesión", clients_login_path, class: "btn btn--primary" %>
+                <%= link_to "Crear cuenta", clients_signup_path, class: "btn btn--outline" %>
+              </div>
+            </div>
+            <div class="navbar__cta">
+              <a class="btn btn--primary" href="#contacto">Agenda una demo</a>
+            </div>
           </div>
         </div>
       </header>

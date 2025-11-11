@@ -5,40 +5,440 @@
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <title>Panel - Homason</title>
     <style>
-      body { font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; margin: 0; background: #f5f6f8; color: #1f2933; }
-      header { background: #0f172a; color: white; padding: 1.5rem 2rem; display: flex; justify-content: space-between; align-items: center; }
-      header h1 { margin: 0; font-size: 1.5rem; }
-      nav a { color: white; margin-left: 1rem; text-decoration: none; font-weight: 500; }
-      main { padding: 2rem; }
-      .grid { display: grid; gap: 1.5rem; }
-      .two-columns { grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); }
-      .card { background: white; border-radius: 12px; padding: 1.5rem; box-shadow: 0 10px 25px -15px rgba(15, 23, 42, 0.45); }
-      .card h2 { margin-top: 0; font-size: 1.2rem; color: #0f172a; }
-      table { width: 100%; border-collapse: collapse; font-size: 0.95rem; }
-      th, td { padding: 0.5rem; text-align: left; border-bottom: 1px solid #e2e8f0; }
-      th { text-transform: uppercase; font-size: 0.75rem; letter-spacing: 0.08em; color: #64748b; }
-      .status { display: inline-flex; align-items: center; padding: 0.2rem 0.6rem; border-radius: 999px; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; }
-      .status[data-status="pending"] { background: #fef3c7; color: #92400e; }
-      .status[data-status="confirmed"] { background: #dcfce7; color: #166534; }
-      .status[data-status="completed"] { background: #dbeafe; color: #1d4ed8; }
-      .status[data-status="cancelled"] { background: #fee2e2; color: #b91c1c; }
-      .muted { color: #64748b; font-size: 0.85rem; }
-      .attachments { display: flex; flex-wrap: wrap; gap: 0.5rem; }
-      .attachments a { background: #0f172a; color: white; padding: 0.3rem 0.8rem; border-radius: 999px; text-decoration: none; font-size: 0.8rem; }
-      footer { text-align: center; padding: 1rem 0; color: #94a3b8; font-size: 0.8rem; }
+      :root {
+        --brand-500: #2563eb;
+        --brand-600: #1d4ed8;
+        --brand-700: #1e3a8a;
+        --slate-25: #f8fafc;
+        --slate-50: #f1f5f9;
+        --slate-100: #e2e8f0;
+        --slate-300: #cbd5f5;
+        --slate-400: #94a3b8;
+        --slate-600: #475569;
+        --slate-700: #334155;
+        --slate-900: #0f172a;
+        --radius-lg: 16px;
+        --shadow-sm: 0 10px 25px -18px rgba(15, 23, 42, 0.4);
+        color-scheme: light;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        background: linear-gradient(180deg, rgba(15, 23, 42, 0.08), rgba(15, 23, 42, 0)) no-repeat,
+          var(--slate-25);
+        color: var(--slate-900);
+        min-height: 100vh;
+      }
+
+      a {
+        color: inherit;
+      }
+
+      .topbar {
+        position: sticky;
+        top: 0;
+        z-index: 10;
+        background: linear-gradient(115deg, var(--brand-700), var(--brand-500));
+        color: white;
+        box-shadow: 0 18px 40px -35px rgba(15, 23, 42, 0.9);
+      }
+
+      .topbar__inner {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 1.2rem 2rem;
+        display: flex;
+        align-items: center;
+        gap: 2rem;
+      }
+
+      .topbar__brand {
+        display: flex;
+        align-items: center;
+        gap: 0.85rem;
+        min-width: 0;
+      }
+
+      .topbar__logo {
+        width: 40px;
+        height: 40px;
+        border-radius: 12px;
+        display: grid;
+        place-content: center;
+        font-weight: 700;
+        font-size: 1.1rem;
+        background: rgba(255, 255, 255, 0.18);
+        border: 1px solid rgba(255, 255, 255, 0.35);
+      }
+
+      .topbar__name {
+        font-size: 1.2rem;
+        font-weight: 600;
+        letter-spacing: 0.01em;
+        margin: 0;
+      }
+
+      .topbar__meta {
+        margin: 0;
+        color: rgba(255, 255, 255, 0.75);
+        font-size: 0.85rem;
+      }
+
+      .topbar__menu {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        flex: 1;
+      }
+
+      .topbar__link {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        padding: 0.4rem 0.8rem;
+        border-radius: 999px;
+        font-weight: 500;
+        font-size: 0.95rem;
+        text-decoration: none;
+        color: rgba(255, 255, 255, 0.88);
+        transition: background 0.2s ease, color 0.2s ease;
+      }
+
+      .topbar__link:hover,
+      .topbar__link:focus-visible {
+        background: rgba(255, 255, 255, 0.22);
+        color: white;
+        outline: none;
+      }
+
+      .topbar__link[aria-current="page"] {
+        background: white;
+        color: var(--brand-600);
+        font-weight: 600;
+        box-shadow: 0 10px 30px -18px rgba(15, 23, 42, 0.55);
+      }
+
+      .topbar__actions {
+        display: flex;
+        gap: 0.5rem;
+        align-items: center;
+      }
+
+      main {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 2.5rem 2rem 3.5rem;
+        display: flex;
+        flex-direction: column;
+        gap: 1.75rem;
+      }
+
+      .grid {
+        display: grid;
+        gap: 1.5rem;
+      }
+
+      .two-columns {
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      }
+
+      .card {
+        background: white;
+        border-radius: var(--radius-lg);
+        padding: 1.6rem;
+        box-shadow: var(--shadow-sm);
+        border: 1px solid rgba(15, 23, 42, 0.05);
+      }
+
+      .card h2 {
+        margin-top: 0;
+        margin-bottom: 0.75rem;
+        font-size: 1.15rem;
+        color: var(--slate-900);
+        letter-spacing: -0.01em;
+      }
+
+      .card__header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 1rem;
+        margin-bottom: 1rem;
+      }
+
+      .card__subtitle {
+        color: var(--slate-600);
+        font-size: 0.9rem;
+        margin: 0;
+      }
+
+      .muted {
+        color: var(--slate-600);
+        font-size: 0.9rem;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 0.95rem;
+        color: var(--slate-700);
+      }
+
+      thead th {
+        text-align: left;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        font-size: 0.7rem;
+        color: var(--slate-600);
+        padding-bottom: 0.75rem;
+      }
+
+      tbody td {
+        border-top: 1px solid var(--slate-100);
+        padding: 0.75rem 0;
+        vertical-align: top;
+      }
+
+      tbody tr:first-child td {
+        border-top: none;
+      }
+
+      .status {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.35rem;
+        padding: 0.25rem 0.7rem;
+        border-radius: 999px;
+        font-size: 0.72rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+      }
+
+      .status::before {
+        content: "";
+        display: inline-block;
+        width: 8px;
+        height: 8px;
+        border-radius: 999px;
+        background: currentColor;
+        opacity: 0.6;
+      }
+
+      .status[data-status="pending"] {
+        background: #fef3c7;
+        color: #b45309;
+      }
+
+      .status[data-status="confirmed"] {
+        background: #dcfce7;
+        color: #15803d;
+      }
+
+      .status[data-status="completed"] {
+        background: #dbeafe;
+        color: #1d4ed8;
+      }
+
+      .status[data-status="cancelled"] {
+        background: #fee2e2;
+        color: #b91c1c;
+      }
+
+      .status[data-status="ordered"] {
+        background: #e0f2fe;
+        color: #0369a1;
+      }
+
+      .status[data-status="delivered"] {
+        background: #ecfccb;
+        color: #4d7c0f;
+      }
+
+      .status[data-status="new"] {
+        background: #eef2ff;
+        color: #4338ca;
+      }
+
+      .status[data-status="contacted"] {
+        background: #fdf2f8;
+        color: #be185d;
+      }
+
+      .status[data-status="qualified"] {
+        background: #dcfce7;
+        color: #166534;
+      }
+
+      .status[data-status="scheduled"] {
+        background: #dbeafe;
+        color: #1d4ed8;
+      }
+
+      .status[data-status="converted"] {
+        background: #cffafe;
+        color: #0f766e;
+      }
+
+      .status[data-status="lost"] {
+        background: #f8fafc;
+        color: #475569;
+      }
+
+      .status[data-status="active"] {
+        background: #ede9fe;
+        color: #6d28d9;
+      }
+
+      .status[data-status="inactive"] {
+        background: #f8fafc;
+        color: #475569;
+      }
+
+      .status[data-status="pending_follow_up"] {
+        background: #fff7ed;
+        color: #9a3412;
+      }
+
+      .attachments,
+      .link-group {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+      }
+
+      .btn-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.35rem;
+        padding: 0.35rem 0.75rem;
+        border-radius: 999px;
+        border: 1px solid rgba(37, 99, 235, 0.2);
+        background: rgba(37, 99, 235, 0.08);
+        color: var(--brand-600);
+        font-size: 0.82rem;
+        font-weight: 600;
+        text-decoration: none;
+        transition: all 0.2s ease;
+      }
+
+      .btn-link:hover,
+      .btn-link:focus-visible {
+        background: rgba(37, 99, 235, 0.16);
+        border-color: rgba(37, 99, 235, 0.4);
+        outline: none;
+      }
+
+      .btn-link--ghost {
+        border-color: rgba(255, 255, 255, 0.4);
+        background: rgba(255, 255, 255, 0.16);
+        color: white;
+      }
+
+      .btn-link--ghost:hover,
+      .btn-link--ghost:focus-visible {
+        background: rgba(255, 255, 255, 0.26);
+        border-color: rgba(255, 255, 255, 0.6);
+      }
+
+      .btn-link--small {
+        font-size: 0.75rem;
+        padding: 0.3rem 0.6rem;
+      }
+
+      .list {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 0.85rem;
+      }
+
+      .list__item {
+        display: flex;
+        flex-direction: column;
+        gap: 0.35rem;
+        padding: 0.8rem 1rem;
+        border-radius: 12px;
+        border: 1px solid var(--slate-100);
+        background: var(--slate-50);
+      }
+
+      .list__title {
+        font-weight: 600;
+        font-size: 1rem;
+        color: var(--slate-900);
+      }
+
+      .list__meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.75rem;
+        color: var(--slate-600);
+        font-size: 0.85rem;
+      }
+
+      footer {
+        text-align: center;
+        padding: 2rem 0 3rem;
+        color: var(--slate-400);
+        font-size: 0.82rem;
+      }
+
+      @media (max-width: 768px) {
+        .topbar__inner {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 1rem;
+        }
+
+        .topbar__menu {
+          width: 100%;
+          flex-wrap: wrap;
+        }
+
+        main {
+          padding: 1.8rem 1.25rem 3rem;
+        }
+      }
     </style>
   </head>
   <body>
-    <header>
-      <h1>Homason · Panel</h1>
-      <nav>
-        <% if current_user&.professional? %>
-          <%= link_to "Panel profesional", professionals_dashboard_path %>
-        <% end %>
-        <% if current_user&.customer? %>
-          <%= link_to "Panel cliente", clients_dashboard_path %>
-        <% end %>
-      </nav>
+    <header class="topbar">
+      <div class="topbar__inner">
+        <div class="topbar__brand">
+          <span class="topbar__logo" aria-hidden="true">H</span>
+          <div>
+            <p class="topbar__name">Homason</p>
+            <p class="topbar__meta">Panel de gestión integral</p>
+          </div>
+        </div>
+        <nav class="topbar__menu" aria-label="Accesos del panel">
+          <% if current_user&.professional? %>
+            <% professional_link_options = { class: "topbar__link" }
+               professional_link_options[:aria] = { current: "page" } if current_page?(professionals_dashboard_path) %>
+            <%= link_to "Panel profesional", professionals_dashboard_path, professional_link_options %>
+          <% end %>
+          <% if current_user&.customer? %>
+            <% client_link_options = { class: "topbar__link" }
+               client_link_options[:aria] = { current: "page" } if current_page?(clients_dashboard_path) %>
+            <%= link_to "Panel cliente", clients_dashboard_path, client_link_options %>
+          <% end %>
+          <%= link_to "Volver al sitio", root_path, class: "topbar__link" %>
+        </nav>
+        <div class="topbar__actions">
+          <% if current_user.present? %>
+            <span class="btn-link btn-link--ghost">Hola, <%= current_user.name %></span>
+          <% end %>
+        </div>
+      </div>
     </header>
     <main>
       <%= yield %>

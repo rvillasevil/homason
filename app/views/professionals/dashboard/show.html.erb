@@ -1,6 +1,8 @@
 <div class="grid two-columns">
   <section class="card">
-    <h2>Perfil profesional</h2>
+    <div class="card__header">
+      <h2>Perfil profesional</h2>
+    </div>
     <% if @profile.present? %>
       <p><strong>Nombre:</strong> <%= current_user.name %></p>
       <p><strong>Zona:</strong> <%= @profile.zone %></p>
@@ -15,7 +17,9 @@
   </section>
 
   <section class="card">
-    <h2>Próximos seguimientos</h2>
+    <div class="card__header">
+      <h2>Próximos seguimientos</h2>
+    </div>
     <% if @upcoming_follow_ups.any? %>
       <table>
         <thead>
@@ -41,8 +45,10 @@
   </section>
 </div>
 
-<section class="card" style="margin-top: 1.5rem;">
-  <h2>Trabajos asignados</h2>
+<section class="card">
+  <div class="card__header">
+    <h2>Trabajos asignados</h2>
+  </div>
   <% if @bookings.any? %>
     <table>
       <thead>
@@ -76,7 +82,7 @@
               <% if booking.attachments.any? %>
                 <div class="attachments">
                   <% booking.attachments.each_with_index do |url, idx| %>
-                    <%= link_to "Archivo #{idx + 1}", url, target: "_blank", rel: "noopener" %>
+                    <%= link_to "Archivo #{idx + 1}", url, target: "_blank", rel: "noopener", class: "btn-link btn-link--small" %>
                   <% end %>
                 </div>
               <% else %>
@@ -92,8 +98,10 @@
   <% end %>
 </section>
 
-<section class="card" style="margin-top: 1.5rem;">
-  <h2>Leads activos</h2>
+<section class="card">
+  <div class="card__header">
+    <h2>Leads activos</h2>
+  </div>
   <% if @leads.any? %>
     <table>
       <thead>
@@ -110,12 +118,14 @@
           <tr>
             <td><%= lead.name %></td>
             <td>
-              <% if lead.email.present? %>
-                <div><a href="mailto:<%= lead.email %>"><%= lead.email %></a></div>
-              <% end %>
-              <% if lead.phone.present? %>
-                <div><a href="tel:<%= lead.phone %>"><%= lead.phone %></a></div>
-              <% end %>
+              <div class="link-group">
+                <% if lead.email.present? %>
+                  <%= mail_to lead.email, lead.email, class: "btn-link btn-link--small" %>
+                <% end %>
+                <% if lead.phone.present? %>
+                  <%= link_to lead.phone, "tel:#{lead.phone}", class: "btn-link btn-link--small" %>
+                <% end %>
+              </div>
             </td>
             <td><span class="status" data-status="<%= lead.status %>"><%= lead.status.humanize %></span></td>
             <td><%= lead.source.presence || "—" %></td>

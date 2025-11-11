@@ -1,5 +1,5 @@
 module Professionals
-  class DashboardController < ApplicationController
+  class DashboardsController < ApplicationController
     before_action :authenticate_user!
     before_action -> { require_role!("professional") }
 
