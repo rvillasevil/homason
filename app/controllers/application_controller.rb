@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
-  protect_from_forgery with: :null_session
+  protect_from_forgery with: :exception, unless: -> { request.format.json? }
+  skip_before_action :verify_authenticity_token, if: -> { request.format.json? }
 
   before_action :set_current_user
 
@@ -11,6 +12,11 @@ class ApplicationController < ActionController::Base
   private
 
   def set_current_user
+    if session[:user_id]
+      @current_user = User.find_by(id: session[:user_id])
+      return if @current_user
+    end
+
     auth = request.headers["Authorization"]
     return unless auth&.start_with?("Bearer ")
 
@@ -23,7 +29,7 @@ class ApplicationController < ActionController::Base
     return if current_user
 
     respond_to do |format|
-      format.html { redirect_to login_redirect_path, alert: "Debes iniciar sesión para continuar." }
+      format.html { redirect_to login_redirect_path(auth_error: "unauthenticated"), status: :see_other }
       format.json { render json: { error: "Unauthorized" }, status: :unauthorized }
       format.any { head :unauthorized }
     end
@@ -33,7 +39,7 @@ class ApplicationController < ActionController::Base
     return if current_user && roles.map(&:to_s).include?(current_user.role)
 
     respond_to do |format|
-      format.html { redirect_to root_path, alert: "No tienes permisos para acceder a esta sección." }
+      format.html { redirect_to root_path(access_error: "forbidden"), status: :see_other }
       format.json { render json: { error: "Forbidden" }, status: :forbidden }
       format.any { head :forbidden }
     end

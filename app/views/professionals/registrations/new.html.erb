@@ -10,25 +10,35 @@
       </p>
     </div>
 
+    <% if @form_errors.any? %>
+      <div class="auth-alert" role="alert">
+        <ul>
+          <% @form_errors.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
     <%= form_with url: signup_path, method: :post, local: true, html: { class: "auth-form" } do |form| %>
       <div class="auth-form__group">
         <%= form.label :name, "Nombre y apellidos" %>
-        <%= form.text_field :name, required: true, autocomplete: "name" %>
+        <%= form.text_field :name, required: true, autocomplete: "name", value: @form_data[:name] %>
       </div>
 
       <div class="auth-form__group">
         <%= form.label :email, "Correo profesional" %>
-        <%= form.email_field :email, required: true, autocomplete: "email" %>
+        <%= form.email_field :email, required: true, autocomplete: "email", value: @form_data[:email] %>
       </div>
 
       <div class="auth-form__group">
         <%= form.label :phone, "Teléfono de contacto" %>
-        <%= form.telephone_field :phone, required: true, autocomplete: "tel" %>
+        <%= form.telephone_field :phone, required: true, autocomplete: "tel", value: @form_data[:phone] %>
       </div>
 
       <div class="auth-form__group">
         <%= form.label :address, "Zona de trabajo principal" %>
-        <%= form.text_field :address, placeholder: "Ej. Madrid, zona norte", required: true, autocomplete: "address-level2" %>
+        <%= form.text_field :address, placeholder: "Ej. Madrid, zona norte", required: true, autocomplete: "address-level2", value: @form_data[:address] %>
       </div>
 
       <div class="auth-form__group">
@@ -42,7 +52,7 @@
         <%= form.password_field :password_confirmation, required: true, autocomplete: "new-password", minlength: 8 %>
       </div>
 
-      <%= form.hidden_field :role, value: "professional" %>
+      <%= form.hidden_field :role, value: @form_data[:role] %>
 
       <label class="auth-checkbox">
         <%= check_box_tag :accept_terms, "1", false, required: true %>

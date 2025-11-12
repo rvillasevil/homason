@@ -4,16 +4,28 @@
   <div class="auth-card">
     <div class="auth-card__header">
       <span class="auth-card__eyebrow">Profesionales Homason</span>
-      <h1>Inicia sesión y gestiona tus obras</h1>
+      <h1>Inicia sesión para gestionar tus proyectos</h1>
       <p class="auth-card__subtitle">
         Accede a tu espacio profesional para revisar trabajos asignados, coordinar materiales y mantener tus leads siempre al día.
       </p>
     </div>
 
+    <% messages = Array(@form_errors).dup %>
+    <% messages << "Debes iniciar sesión con tu cuenta profesional." if params[:auth_error] == "unauthenticated" %>
+    <% if messages.any? %>
+      <div class="auth-alert" role="alert">
+        <ul>
+          <% messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
     <%= form_with url: login_path, method: :post, local: true, html: { class: "auth-form" } do |form| %>
       <div class="auth-form__group">
-        <%= form.label :email, "Correo electrónico" %>
-        <%= form.email_field :email, required: true, autocomplete: "email" %>
+        <%= form.label :email, "Correo profesional" %>
+        <%= form.email_field :email, required: true, autocomplete: "email", value: @form_data[:email] %>
       </div>
 
       <div class="auth-form__group">
@@ -22,13 +34,13 @@
         <p class="auth-form__hint">Si olvidaste tu contraseña, contacta con el equipo de soporte para restablecerla.</p>
       </div>
 
-      <%= form.hidden_field :role, value: "professional" %>
+      <%= form.hidden_field :role, value: @form_data[:role] %>
 
       <div class="auth-form__actions">
-        <%= form.submit "Entrar en mi panel", class: "btn btn--primary" %>
+        <%= form.submit "Entrar al panel", class: "btn btn--primary" %>
         <span>
-          ¿Nuevo en Homason?
-          <%= link_to "Crea tu cuenta profesional", professionals_signup_path, class: "auth-link" %>
+          ¿Aún no formas parte de Homason?
+          <%= link_to "Solicita tu alta", professionals_signup_path, class: "auth-link" %>
         </span>
       </div>
     <% end %>
@@ -39,24 +51,24 @@
   </div>
 
   <aside class="auth-side-panel">
-    <h2 class="auth-side-panel__title">Todo tu negocio de reformas en una sola vista</h2>
+    <h2 class="auth-side-panel__title">Crece con proyectos filtrados y pagos garantizados</h2>
     <ul class="auth-benefits">
       <li>
-        <strong>Agenda coordinada</strong>
-        Visualiza próximas visitas, fases de obra y recordatorios de seguimiento.
+        <strong>Solicitudes alineadas contigo</strong>
+        Recibe obras ajustadas a tu especialidad, tamaño de equipo y zona de servicio.
       </li>
       <li>
-        <strong>Clientes informados</strong>
-        Consulta el estado de cada lead y envía actualizaciones con un clic.
+        <strong>Visibilidad total</strong>
+        Comparte avances diarios con tus clientes y coordina recursos desde un mismo panel.
       </li>
       <li>
-        <strong>Materiales y pedidos</strong>
-        Confirma entregas, sube evidencias y asegura que cada obra avance sin bloqueos.
+        <strong>Soporte operativo</strong>
+        Un project manager Homason resuelve incidencias y asegura que cada obra avance sin bloqueos.
       </li>
     </ul>
     <div class="auth-meta">
-      <strong>¿Necesitas ayuda?</strong>
-      Escríbenos a <a class="auth-link" href="mailto:partners@homason.com">partners@homason.com</a> o llámanos al <a class="auth-link" href="tel:+34911223344">+34 911 223 344</a>.
+      <strong>¿Necesitas ayuda con tu cuenta?</strong>
+      Escríbenos a <a class="auth-link" href="mailto:partners@homason.com">partners@homason.com</a> y te responderemos en menos de 24&nbsp;h.
     </div>
   </aside>
 </section>

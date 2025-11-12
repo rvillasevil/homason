@@ -10,10 +10,22 @@
       </p>
     </div>
 
+    <% messages = Array(@form_errors).dup %>
+    <% messages << "Debes iniciar sesión para acceder a tu panel." if params[:auth_error] == "unauthenticated" %>
+    <% if messages.any? %>
+      <div class="auth-alert" role="alert">
+        <ul>
+          <% messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
     <%= form_with url: login_path, method: :post, local: true, html: { class: "auth-form" } do |form| %>
       <div class="auth-form__group">
         <%= form.label :email, "Correo electrónico" %>
-        <%= form.email_field :email, required: true, autocomplete: "email" %>
+        <%= form.email_field :email, required: true, autocomplete: "email", value: @form_data[:email] %>
       </div>
 
       <div class="auth-form__group">
@@ -21,14 +33,15 @@
         <%= form.password_field :password, required: true, autocomplete: "current-password" %>
       </div>
 
-      <%= form.hidden_field :role, value: "customer" %>
+      <%= form.hidden_field :role, value: @form_data[:role] %>
 
       <div class="auth-form__actions">
         <%= form.submit "Entrar en mi cuenta", class: "btn btn--primary" %>
         <span>
           ¿Aún no eres cliente?
           <%= link_to "Reserva tu primera obra", clients_signup_path, class: "auth-link" %>
-        </span>      </div>
+        </span>
+      </div>
     <% end %>
 
     <div class="auth-form__footer">
