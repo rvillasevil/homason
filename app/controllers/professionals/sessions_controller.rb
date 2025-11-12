@@ -2,6 +2,9 @@ module Professionals
   class SessionsController < ApplicationController
     layout "marketing"
 
-    def new; end
+    def new
+      @form_data = { email: "", role: "professional" }
+      @form_errors = []
+    end
   end
 end

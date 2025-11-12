@@ -45,13 +45,13 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def login_redirect_path
+  def login_redirect_path(**params)
     if request.path.start_with?("/professionals")
-      professionals_login_path
+      professionals_login_path(**params)
     elsif request.path.start_with?("/clients")
-      clients_login_path
+      clients_login_path(**params)
     else
-      root_path
+      root_path(**params)
     end
   end
 end
