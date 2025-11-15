@@ -13,7 +13,7 @@
       <%= @role == "professional" ? "Los profesionales pueden coordinar equipos, controlar hitos y compartir avances con sus clientes." : "Los clientes obtienen visibilidad total del presupuesto y el progreso de cada proyecto." %>
     </p>
 
-    <%= form_with scope: :session, url: session_path, method: :post, class: "auth-form" do |form| %>
+    <%= form_with scope: :session, url: session_path, method: :post, class: "auth-form", local: true do |form| %>
       <%= form.hidden_field :role, value: @role %>
 
       <label>

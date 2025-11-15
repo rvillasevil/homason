@@ -29,6 +29,16 @@ module Homason
     # Skip views, helpers and assets when generating a new resource.
     config.api_only = true
 
+    # This application renders traditional HTML forms but, because it runs in
+    # API-only mode, Rails does not automatically include rails-ujs to attach
+    # the CSRF token header for remote forms. When `form_with` generates remote
+    # forms (the default), the authenticity token is omitted from the markup
+    # which causes login submissions to fail with
+    # ActionController::InvalidAuthenticityToken. Force `form_with` to generate
+    # local forms so the token is embedded as a hidden field.
+    config.action_view.form_with_generates_remote_forms = false
+
+
     # Enable cookie-based sessions for the HTML experiences of the application.
     config.session_store :cookie_store, key: "_homason_session", same_site: :lax
     config.middleware.use ActionDispatch::Cookies
