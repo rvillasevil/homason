@@ -12,6 +12,12 @@
       href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />    
     <style>
       :root {
         --bg: #f8f7ff;
@@ -70,14 +76,11 @@
         border-bottom: 1px solid var(--border);
       }
 
-      .nav {
+      .nav-inner {
         max-width: 1200px;
         margin: 0 auto;
         padding: 1rem 1.5rem;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 1rem;
+        width: 100%;
       }
 
       .logo {
@@ -100,6 +103,19 @@
         place-items: center;
         font-family: "Space Grotesk", sans-serif;
       }
+
+      .nav-collapse {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1.5rem;
+        flex: 1 1 auto;
+      }
+
+      .nav-collapse.collapse:not(.show) {
+        display: none;
+      }
+
 
       .menu {
         display: flex;
@@ -126,6 +142,25 @@
         gap: 0.6rem;
         flex-wrap: wrap;
         justify-content: flex-end;
+      }
+
+      .nav-toggle {
+        border: 1px solid var(--border);
+        background: #fff;
+        border-radius: 999px;
+        padding: 0.45rem 0.9rem;
+        font-weight: 600;
+        font-size: 0.9rem;
+        color: var(--text);
+      }
+
+      .nav-toggle:focus-visible {
+        outline: 2px solid var(--accent);
+        outline-offset: 3px;
+      }
+
+      .navbar-toggler-icon {
+        filter: invert(17%) sepia(8%) saturate(1189%) hue-rotate(199deg) brightness(93%) contrast(86%);
       }
 
       .user-pill {
@@ -570,6 +605,57 @@
       }
 
       @media (max-width: 768px) {
+        .nav-toggle {
+          display: inline-flex;
+          align-items: center;
+          gap: 0.35rem;
+        }
+
+        .nav-collapse {
+          width: 100%;
+          flex-direction: column;
+          align-items: stretch;
+          margin-top: 1rem;
+        }
+
+        .menu,
+        .nav-actions {
+          width: 100%;
+          flex-direction: column;
+          align-items: stretch;
+          text-align: center;
+        }
+
+        .menu a,
+        .nav-actions .button,
+        .nav-actions .user-pill {
+          width: 100%;
+          justify-content: center;
+        }
+
+        .hero-actions {
+          flex-direction: column;
+        }
+      }
+
+      @media (max-width: 600px) {
+        .media-stack img.secondary,
+        .floating-card {
+          position: static;
+        }
+
+        .media-stack img.secondary {
+          width: 80%;
+          margin: 1.25rem auto 0;
+        }
+
+        .floating-card {
+          margin-top: 1rem;
+        }
+      }
+
+
+      @media (max-width: 768px) {
         .nav {
           flex-direction: column;
           align-items: stretch;
@@ -645,30 +731,46 @@
   <body>
     <div class="page">
       <header>
-        <nav class="nav">
-          <a href="/" class="logo">
-            <span class="logo-mark">H</span>
-            Homason
-          </a>
-          <div class="menu">
-            <a href="#como-funciona">Cómo funciona</a>
-            <a href="#precios">Precios</a>
-            <a href="#profesionales">Para profesionales</a>
-            <a href="#faq">FAQ</a>
-            <a href="#contacto">Contacto</a>
-          </div>
-          <div class="nav-actions">
-            <% if user_signed_in? %>
-              <span class="user-pill">
-                <%= current_user[:name] %> · <%= role_label(current_user[:role]) %>
-              </span>
-              <%= link_to "Dashboard", dashboard_path, class: "button secondary" %>
-              <%= link_to "Configuración", profile_path, class: "button secondary" %>
-              <%= button_to "Cerrar sesión", session_path, method: :delete, form: { class: "inline-form" }, class: "button ghost" %>
-            <% else %>
-              <%= link_to "Login clientes", new_session_path(role: :client), class: "button secondary" %>
-              <%= link_to "Login profesionales", new_session_path(role: :professional), class: "button primary" %>
-            <% end %>
+        <nav class="navbar navbar-expand-lg" aria-label="Navegación principal">
+          <div class="nav-inner d-flex flex-wrap flex-lg-nowrap align-items-center gap-3">
+            <a href="/" class="navbar-brand logo">
+              <span class="logo-mark">H</span>
+              Homason
+            </a>
+            <button
+              class="navbar-toggler nav-toggle ms-auto d-lg-none"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#nav-collapse"
+              aria-controls="nav-collapse"
+              aria-expanded="false"
+              aria-label="Mostrar u ocultar el menú"
+            >
+              <span class="navbar-toggler-icon" aria-hidden="true"></span>
+              <span class="ms-2">Menú</span>
+            </button>
+            <div class="collapse navbar-collapse nav-collapse" id="nav-collapse">
+              <div class="menu flex-grow-1">
+                <a href="#como-funciona">Cómo funciona</a>
+                <a href="#precios">Precios</a>
+                <a href="#profesionales">Para profesionales</a>
+                <a href="#faq">FAQ</a>
+                <a href="#contacto">Contacto</a>
+              </div>
+              <div class="nav-actions ms-lg-4">
+                <% if user_signed_in? %>
+                  <span class="user-pill">
+                    <%= current_user[:name] %> · <%= role_label(current_user[:role]) %>
+                  </span>
+                  <%= link_to "Dashboard", dashboard_path, class: "button secondary" %>
+                  <%= link_to "Configuración", profile_path, class: "button secondary" %>
+                  <%= button_to "Cerrar sesión", session_path, method: :delete, form: { class: "inline-form" }, class: "button ghost" %>
+                <% else %>
+                  <%= link_to "Login clientes", new_session_path(role: :client), class: "button secondary" %>
+                  <%= link_to "Login profesionales", new_session_path(role: :professional), class: "button primary" %>
+                <% end %>
+              </div>
+            </div>
           </div>
         </nav>
       </header>
@@ -701,5 +803,10 @@
         </div>
       </footer>
     </div>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+    ></script>    
   </body>
 </html>
