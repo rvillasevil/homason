@@ -1,120 +1,291 @@
-<section class="content">
-  <div class="grid two" style="align-items: center; gap: 3rem;">
-    <div>
-      <p style="text-transform: uppercase; letter-spacing: 0.3em; color: var(--text-soft); font-size: 0.8rem; margin-bottom: 1rem;">
-        Reformas orquestadas
+<div class="content">
+  <section class="section hero" id="top">
+    <div class="hero-main">
+      <span class="pill">Reformas orquestadas</span>
+      <h1>Contratación Transparente en Construcción y Reformas</h1>
+      <p>
+        Con Homason contratas albañiles por días o medias jornadas, con precios claros, profesionales filtrados y control total
+        desde tu móvil.
       </p>
-      <h1 style="font-size: clamp(2.4rem, 5vw, 3.6rem); line-height: 1.1; margin-bottom: 1.5rem;">
-        Coordinamos cada obra como si fuera una misión crítica.
-      </h1>
-      <p style="font-size: 1.05rem; color: var(--text-soft); margin-bottom: 2rem; max-width: 38ch;">
-        Homason combina diseño, materiales y ejecución en un solo flujo de trabajo digital. Sin capas extra, sin llamadas eternas,
-        solo progreso visible desde el primer día.
-      </p>
-      <div style="display: flex; flex-wrap: wrap; gap: 1rem;">
-        <%= link_to "Login clientes", new_session_path(role: :client), class: "button primary" %>
-        <%= link_to "Login profesionales", new_session_path(role: :professional), class: "button secondary" %>
-        <a href="#contact" class="button secondary">Hablar con un asesor</a>
+      <div class="nav-actions" style="padding: 0;">
+        <a href="#contacto" class="button primary">Pide tu presupuesto con fotos</a>
+        <a href="https://wa.me/34611000000" class="button secondary">Hablar por WhatsApp</a>
       </div>
-    </div>
-    <div style="background: var(--card); border-radius: 1.5rem; padding: 2rem; border: 1px solid var(--border); box-shadow: 0 50px 120px rgba(15, 23, 42, 0.4);">
-      <p style="text-transform: uppercase; letter-spacing: 0.2em; color: var(--accent); font-size: 0.75rem; margin-bottom: 0.7rem;">
-        Panel en tiempo real
+      <p style="margin-top: 1.2rem; color: var(--text-soft);">
+        Sin sorpresas. Sin “ya veremos”. Solo mano de obra y materiales, desglosados desde el principio.
       </p>
-      <h3 style="margin-bottom: 1.25rem;">Lo esencial en una sola vista</h3>
+    </div>
+    <div class="hero-visual">
+      <h3 style="margin-top: 0;">Lo ves todo antes de empezar</h3>
       <ul style="list-style: none; padding: 0; margin: 0; display: grid; gap: 1rem;">
-        <li style="padding: 1rem; border-radius: 1rem; background: var(--card-soft); border: 1px solid var(--border);">
-          <strong style="display: block;">CapEx controlado</strong>
-          <span style="color: var(--text-soft);">Seguimiento de presupuesto, incidencias y pagos al día.</span>
+        <li class="card-soft">
+          <strong>Presupuesto por horas</strong>
+          <p style="margin: 0; color: var(--text-soft);">Te mostramos cuántas jornadas y materiales necesitas.</p>
         </li>
-        <li style="padding: 1rem; border-radius: 1rem; background: var(--card-soft); border: 1px solid var(--border);">
-          <strong style="display: block;">Equipos sincronizados</strong>
-          <span style="color: var(--text-soft);">Agenda compartida con constructores, diseñadores y proveedores.</span>
+        <li class="card-soft">
+          <strong>Agenda bajo control</strong>
+          <p style="margin: 0; color: var(--text-soft);">Reservas días completos o medias jornadas desde la app.</p>
         </li>
-        <li style="padding: 1rem; border-radius: 1rem; background: var(--card-soft); border: 1px solid var(--border);">
-          <strong style="display: block;">Materiales garantizados</strong>
-          <span style="color: var(--text-soft);">Pedidos con trazabilidad y fechas de entrega aseguradas.</span>
+        <li class="card-soft">
+          <strong>Seguimiento en el móvil</strong>
+          <p style="margin: 0; color: var(--text-soft);">Fotos del avance, resumen de horas y posibilidad de pausar.</p>
         </li>
       </ul>
     </div>
-  </div>
-</section>
+  </section>
 
-<section class="content">
-  <div class="grid two" style="gap: 2rem;">
-    <article class="card" style="background: var(--card-soft); border-radius: 1.5rem;">
-      <p class="eyebrow">Portal para clientes</p>
-      <h2 style="margin-top: 0;">Seguimiento con transparencia total</h2>
-      <p style="color: var(--text-soft);">
-        Revisa hitos, estados financieros y avances visuales sin esperar reportes manuales. Cada login está diseñado para que los
-        clientes tengan contexto inmediato.
-      </p>
-      <%= link_to "Entrar como cliente", new_session_path(role: :client), class: "button primary" %>
-    </article>
-
-    <article class="card" style="background: var(--card-soft); border-radius: 1.5rem;">
-      <p class="eyebrow">Portal para profesionales</p>
-      <h2 style="margin-top: 0;">Coordina a tu equipo en un único panel</h2>
-      <p style="color: var(--text-soft);">
-        Organiza tareas, comparte entregables y ajusta presupuestos con visibilidad compartida. El acceso profesional habilita las
-        herramientas operativas del dashboard.
-      </p>
-      <%= link_to "Entrar como profesional", new_session_path(role: :professional), class: "button secondary" %>
-    </article>
-  </div>
-</section>
-
-<section class="content">
-  <div class="grid three">
-    <div style="background: var(--card-soft); border-radius: 1rem; padding: 1.6rem; border: 1px solid var(--border);">
-      <p style="font-size: 2.5rem; font-weight: 600; margin-bottom: 0.5rem;">72h</p>
-      <p style="color: var(--text-soft);">Para entregar un plan maestro listo para firmar.</p>
-    </div>
-    <div style="background: var(--card-soft); border-radius: 1rem; padding: 1.6rem; border: 1px solid var(--border);">
-      <p style="font-size: 2.5rem; font-weight: 600; margin-bottom: 0.5rem;">98%</p>
-      <p style="color: var(--text-soft);">De hitos cumplidos según planificación original.</p>
-    </div>
-    <div style="background: var(--card-soft); border-radius: 1rem; padding: 1.6rem; border: 1px solid var(--border);">
-      <p style="font-size: 2.5rem; font-weight: 600; margin-bottom: 0.5rem;">12</p>
-      <p style="color: var(--text-soft);">Ciudades operativas con equipos certificados.</p>
-    </div>
-  </div>
-</section>
-
-<section class="content" id="contact">
-  <div style="background: var(--card); border-radius: 1.5rem; border: 1px solid var(--border); padding: 2.5rem; display: grid; gap: 2rem;">
-    <div>
-      <h2 style="font-size: clamp(2rem, 4vw, 2.6rem); margin-bottom: 1rem;">Agenda una llamada de diagnóstico</h2>
-      <p style="color: var(--text-soft); max-width: 45ch;">
-        Cuéntanos qué espacio quieres transformar y trazamos contigo un plan simple: presupuesto, calendario y responsables.
+  <section class="section" id="como-funciona">
+    <div class="section-header">
+      <h2 class="section-title">Cómo funciona Homason en 4 pasos</h2>
+      <p class="section-lead">
+        Pensado para que lo hagas todo desde el sofá: cuéntanos tu idea, valida el presupuesto y decide cuándo entran los
+        profesionales.
       </p>
     </div>
-    <form style="display: grid; gap: 1rem;">
-      <label style="display: grid; gap: 0.3rem; font-size: 0.95rem;">
-        Nombre
-        <input
-          type="text"
-          placeholder="María Arquitecta"
-          style="padding: 0.85rem 1rem; border-radius: 0.9rem; border: 1px solid var(--border); background: rgba(2, 6, 23, 0.4); color: var(--text);"
-        />
-      </label>
-      <label style="display: grid; gap: 0.3rem; font-size: 0.95rem;">
-        Email
-        <input
-          type="email"
-          placeholder="maria@estudio.com"
-          style="padding: 0.85rem 1rem; border-radius: 0.9rem; border: 1px solid var(--border); background: rgba(2, 6, 23, 0.4); color: var(--text);"
-        />
-      </label>
-      <label style="display: grid; gap: 0.3rem; font-size: 0.95rem;">
-        Mensaje
-        <textarea
-          rows="3"
-          placeholder="Quiero coordinar tres reformas integrales en Q4"
-          style="padding: 0.85rem 1rem; border-radius: 0.9rem; border: 1px solid var(--border); background: rgba(2, 6, 23, 0.4); color: var(--text);"
-        ></textarea>
-      </label>
-      <button type="button" class="button primary" style="justify-content: center;">Enviar solicitud</button>
-    </form>
-  </div>
-</section>
+    <div class="steps">
+      <article class="step-card">
+        <h3>Paso 1 · Cuéntanos qué quieres hacer</h3>
+        <p>
+          Sube fotos o vídeos del espacio y descríbenos qué quieres cambiar. También puedes enviarlo por WhatsApp si te resulta
+          más cómodo.
+        </p>
+      </article>
+      <article class="step-card">
+        <h3>Paso 2 · Presupuesto claro en horas + materiales</h3>
+        <p>
+          Recibes una estimación con las jornadas necesarias y una lista de materiales. Tú decides si compras tú o te lo
+          conseguimos.
+        </p>
+      </article>
+      <article class="step-card">
+        <h3>Paso 3 · Reserva por días o medias jornadas</h3>
+        <p>
+          Elige días concretos y reserva jornadas completas o medias. Siempre verás el precio final antes de confirmar.
+        </p>
+      </article>
+      <article class="step-card">
+        <h3>Paso 4 · Controla la obra desde tu móvil</h3>
+        <p>
+          Amplía, pausa o cambia de profesional desde Homason. Recibirás fotos del antes/después y un resumen real de horas.
+        </p>
+      </article>
+    </div>
+    <div style="margin-top: 2rem; text-align: center;">
+      <a href="#precios" class="button secondary">Quiero ver un ejemplo de presupuesto</a>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2 class="section-title">¿Por qué Homason no es “otro portal de chapuzas”?</h2>
+    <div class="cards">
+      <article class="card-soft">
+        <h3>Profesionales filtrados</h3>
+        <p>
+          Nada de tablones abiertos. Solo trabajamos con equipos verificados: documentación al día, experiencia contrastada y
+          reseñas reales.
+        </p>
+      </article>
+      <article class="card-soft">
+        <h3>Precio por tiempo, no por magia</h3>
+        <p>
+          Pagas por días o medias jornadas de trabajo. Lo ves antes, lo entiendes y tú decides qué ritmo llevar.
+        </p>
+      </article>
+      <article class="card-soft">
+        <h3>Tú mandas en tu obra</h3>
+        <p>
+          Si algo no te encaja puedes parar, ampliar o cambiar de profesional. Homason está de tu lado para que no dependas de
+          un solo albañil y su agenda.
+        </p>
+      </article>
+    </div>
+  </section>
+
+  <section class="section" id="servicios">
+    <h2 class="section-title">¿En qué te podemos ayudar?</h2>
+    <div class="services-grid">
+      <div class="service-item">Reformar un baño</div>
+      <div class="service-item">Cambiar suelo o alicatar</div>
+      <div class="service-item">Tirar o levantar un tabique</div>
+      <div class="service-item">Arreglar humedades y remates</div>
+      <div class="service-item">Pintar + pequeños trabajos</div>
+      <div class="service-item">Preparar piso para alquilar</div>
+    </div>
+    <p style="margin-top: 1.5rem; color: var(--text-soft);">
+      Si lo que quieres no aparece aquí, envíanos fotos igualmente: un experto te dirá cuántos días de trabajo necesitas.
+    </p>
+    <a href="#contacto" class="button primary" style="margin-top: 1rem; width: fit-content;">Subir mis fotos y pedir presupuesto</a>
+  </section>
+
+  <section class="section" id="precios">
+    <h2 class="section-title">Precios claros desde el principio</h2>
+    <p class="section-lead">
+      Siempre sabrás cuánto cuesta cada jornada antes de reservar. Las cifras pueden variar según ciudad y complejidad, pero
+      el precio final se confirma antes de empezar.
+    </p>
+    <div class="cards">
+      <div class="card-soft">
+        <strong>Oficial de albañilería</strong>
+        <p style="margin: 0.5rem 0 0;">Desde 220 € / día</p>
+      </div>
+      <div class="card-soft">
+        <strong>Oficial + ayudante</strong>
+        <p style="margin: 0.5rem 0 0;">Desde 360 € / día</p>
+      </div>
+      <div class="card-soft">
+        <strong>Media jornada (4h)</strong>
+        <p style="margin: 0.5rem 0 0;">Desde 140 €</p>
+      </div>
+    </div>
+    <p style="margin-top: 1.5rem; color: var(--text-soft);">
+      Los materiales los puedes comprar tú o te los conseguimos con precios de almacén profesional y coste desglosado.
+    </p>
+  </section>
+
+  <section class="section">
+    <h2 class="section-title">Clientes que ya han probado Homason</h2>
+    <div class="grid two">
+      <article class="card-soft">
+        <p>
+          “Necesitaba arreglar un baño pequeño en un piso de alquiler. Envié las fotos, me dijeron que serían 2 días de trabajo,
+          y acertaron. Pude ver cada día las fotos y el resumen de horas. Mucho más cómodo que hablar con 5 albañiles.”
+        </p>
+        <p style="font-weight: 600; margin-bottom: 0;">— Marta, Madrid</p>
+      </article>
+      <article class="card-soft">
+        <p>
+          “Reservé dos medias jornadas para rematar humedades. El profesional llegó con todo claro y pude ampliar un día desde
+          el móvil. Sin discusiones ni sorpresas.”
+        </p>
+        <p style="font-weight: 600; margin-bottom: 0;">— Luis, Valencia</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="section" id="profesionales">
+    <div class="section-header">
+      <h2 class="section-title">¿Eres profesional de las reformas?</h2>
+      <p class="section-lead">
+        En Homason te conseguimos trabajos filtrados y clientes que ya han aceptado presupuesto. Tú te centras en trabajar,
+        nosotros en conseguir proyectos y gestionar cobros.
+      </p>
+    </div>
+    <div class="grid two">
+      <div>
+        <h3>Beneficios</h3>
+        <ul style="padding-left: 1.25rem; color: var(--text-soft);">
+          <li>Trabajos cerca de tu zona.</li>
+          <li>Clientes con presupuesto aceptado.</li>
+          <li>Pagos claros y puntuales.</li>
+          <li>Tú eliges qué proyectos aceptas.</li>
+        </ul>
+        <h3>Cómo funciona</h3>
+        <ol style="padding-left: 1.25rem; color: var(--text-soft);">
+          <li>Rellenas tu ficha con experiencia y zonas.</li>
+          <li>Verificamos documentación y hacemos una prueba.</li>
+          <li>Empiezas a recibir trabajos por día o media jornada.</li>
+        </ol>
+      </div>
+      <form>
+        <label>
+          <span>Nombre</span>
+          <input type="text" class="input" placeholder="Laura Proyectos" />
+        </label>
+        <label>
+          <span>Tipo de profesional</span>
+          <select class="input">
+            <option>Albañil</option>
+            <option>Pintor</option>
+            <option>Electricista</option>
+            <option>Otro</option>
+          </select>
+        </label>
+        <label>
+          <span>Zonas en las que trabajas</span>
+          <input type="text" class="input" placeholder="Madrid centro, norte" />
+        </label>
+        <label>
+          <span>Años de experiencia</span>
+          <input type="number" class="input" placeholder="10" />
+        </label>
+        <label>
+          <span>Teléfono / email</span>
+          <input type="text" class="input" placeholder="+34 600 000 000" />
+        </label>
+        <label>
+          <span>Enlaces a fotos de trabajos</span>
+          <input type="text" class="input" placeholder="Link a Drive o WhatsApp" />
+        </label>
+        <button type="button" class="button primary">Quiero trabajar con Homason</button>
+      </form>
+    </div>
+  </section>
+
+  <section class="section" id="faq">
+    <h2 class="section-title">FAQ rápidas</h2>
+    <div class="grid two">
+      <article class="faq-item">
+        <h4>¿Homason hace la obra o solo pone en contacto?</h4>
+        <p>Coordinamos todo: te asignamos un profesional verificado y gestionamos planificación y cobros.</p>
+      </article>
+      <article class="faq-item">
+        <h4>¿Qué pasa si necesito más días de los previstos?</h4>
+        <p>Desde tu panel o por WhatsApp puedes ampliar jornadas. Verás el coste adicional antes de aceptarlo.</p>
+      </article>
+      <article class="faq-item">
+        <h4>¿Puedo comprar yo los materiales?</h4>
+        <p>Sí. Puedes comprarlos tú o dejar que Homason los gestione con precios de almacén profesional.</p>
+      </article>
+      <article class="faq-item">
+        <h4>¿Qué pasa si no estoy contento con el profesional?</h4>
+        <p>Podemos pausar la obra y asignarte otro equipo. No te quedas atado a un solo contacto.</p>
+      </article>
+      <article class="faq-item">
+        <h4>¿En qué zonas trabajáis?</h4>
+        <p>Operamos en Madrid, Barcelona y alrededores. Escríbenos si tu ciudad no está en la lista.</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="section" id="contacto">
+    <div class="section-header">
+      <h2 class="section-title">Contacto</h2>
+      <p class="section-lead">
+        ¿Tienes dudas o una reforma rara? Cuéntanos y te respondemos en menos de 24h. También puedes escribirnos al WhatsApp
+        +34 611 000 000.
+      </p>
+    </div>
+    <div class="grid two">
+      <form>
+        <label>
+          <span>Nombre</span>
+          <input type="text" class="input" placeholder="Nombre completo" />
+        </label>
+        <label>
+          <span>Teléfono</span>
+          <input type="tel" class="input" placeholder="+34 600 000 000" />
+        </label>
+        <label>
+          <span>Email</span>
+          <input type="email" class="input" placeholder="tu@email.com" />
+        </label>
+        <label>
+          <span>Ciudad</span>
+          <input type="text" class="input" placeholder="Madrid" />
+        </label>
+        <label>
+          <span>Mensaje</span>
+          <textarea rows="4" placeholder="Cuéntanos qué necesitas"></textarea>
+        </label>
+        <button type="button" class="button primary">Enviar</button>
+      </form>
+      <div class="card-soft" style="height: fit-content;">
+        <h3>También estamos en WhatsApp</h3>
+        <p>
+          Si prefieres audios y fotos rápidas, escríbenos y te pediremos los datos básicos para darte presupuesto.
+        </p>
+        <a href="https://wa.me/34611000000" class="button secondary" style="width: fit-content;">Abrir WhatsApp</a>
+      </div>
+    </div>
+  </section>
+</div>
