@@ -40,6 +40,7 @@
         color: var(--text);
         min-height: 100vh;
         line-height: 1.6;
+        overflow-x: hidden;        
       }
 
       img {
@@ -566,6 +567,67 @@
         display: flex;
         flex-wrap: wrap;
         gap: 1rem;
+      }
+
+      @media (max-width: 768px) {
+        .nav {
+          flex-direction: column;
+          align-items: stretch;
+          text-align: center;
+          padding-top: 1.25rem;
+          padding-bottom: 1.25rem;
+        }
+
+        .logo {
+          justify-content: center;
+        }
+
+        .menu,
+        .nav-actions {
+          width: 100%;
+          justify-content: center;
+        }
+
+        .menu {
+          flex-direction: column;
+          align-items: stretch;
+        }
+
+        .menu a {
+          width: 100%;
+          padding: 0.65rem 0.9rem;
+        }
+
+        .nav-actions {
+          flex-direction: column;
+          align-items: stretch;
+        }
+
+        .nav-actions .button,
+        .nav-actions .user-pill {
+          width: 100%;
+          justify-content: center;
+        }
+
+        .hero-actions {
+          flex-direction: column;
+        }
+      }
+
+      @media (max-width: 600px) {
+        .media-stack img.secondary,
+        .floating-card {
+          position: static;
+        }
+
+        .media-stack img.secondary {
+          width: 80%;
+          margin: 1.25rem auto 0;
+        }
+
+        .floating-card {
+          margin-top: 1rem;
+        }
       }
 
       @media (min-width: 900px) {
