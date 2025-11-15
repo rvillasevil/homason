@@ -23,26 +23,16 @@ module Homason
     #
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
+    # The UI is rendered server-side, so we need the full middleware stack that
+    # includes cookies, flash, sessions and other browser-oriented features.
+    config.api_only = false
 
-    # Only loads a smaller set of middleware suitable for API only apps.
-    # Middleware like session, flash, cookies can be added back manually.
-    # Skip views, helpers and assets when generating a new resource.
-    config.api_only = true
-
-    # This application renders traditional HTML forms but, because it runs in
-    # API-only mode, Rails does not automatically include rails-ujs to attach
-    # the CSRF token header for remote forms. When `form_with` generates remote
-    # forms (the default), the authenticity token is omitted from the markup
-    # which causes login submissions to fail with
-    # ActionController::InvalidAuthenticityToken. Ensure the token is embedded
-    # directly into every remote form so browsers submit it as part of the form
-    # payload even without rails-ujs present.
+    # `form_with` generates remote (XHR) forms by default which require the CSRF
+    # token to be embedded in the markup because Rails UJS is not part of the
+    # asset pipeline in this project. Disabling remote forms globally keeps
+    # submissions as classic HTML posts and guarantees the token field is
+    # present even when developers forget to pass `local: true`.
+    config.action_view.form_with_generates_remote_forms = false
     config.action_view.embed_authenticity_token_in_remote_forms = true
-
-    # Enable cookie-based sessions for the HTML experiences of the application.
-    config.session_store :cookie_store, key: "_homason_session", same_site: :lax
-    config.middleware.use ActionDispatch::Cookies
-    config.middleware.use ActionDispatch::Session::CookieStore, config.session_options
-    config.middleware.use ActionDispatch::Flash
   end
 end
