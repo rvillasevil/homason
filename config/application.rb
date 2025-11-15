@@ -34,10 +34,10 @@ module Homason
     # the CSRF token header for remote forms. When `form_with` generates remote
     # forms (the default), the authenticity token is omitted from the markup
     # which causes login submissions to fail with
-    # ActionController::InvalidAuthenticityToken. Force `form_with` to generate
-    # local forms so the token is embedded as a hidden field.
-    config.action_view.form_with_generates_remote_forms = false
-
+    # ActionController::InvalidAuthenticityToken. Ensure the token is embedded
+    # directly into every remote form so browsers submit it as part of the form
+    # payload even without rails-ujs present.
+    config.action_view.embed_authenticity_token_in_remote_forms = true
 
     # Enable cookie-based sessions for the HTML experiences of the application.
     config.session_store :cookie_store, key: "_homason_session", same_site: :lax
