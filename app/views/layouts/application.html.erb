@@ -120,10 +120,135 @@
         color: var(--text);
       }
 
+      .button.ghost {
+        background: transparent;
+        border-color: transparent;
+        color: var(--text-soft);
+      }
+
       .button:hover,
       .button:focus-visible {
         transform: translateY(-2px);
       }
+
+      .nav-actions {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+      }
+
+      .user-pill {
+        padding: 0.4rem 0.9rem;
+        border-radius: 999px;
+        background: rgba(56, 189, 248, 0.12);
+        border: 1px solid rgba(56, 189, 248, 0.3);
+        font-size: 0.85rem;
+        color: var(--accent);
+      }
+
+      .card {
+        background: var(--card);
+        border-radius: 1.5rem;
+        border: 1px solid var(--border);
+        padding: 2rem;
+        box-shadow: 0 50px 120px rgba(15, 23, 42, 0.4);
+      }
+
+      .auth-card {
+        width: min(480px, 100%);
+      }
+
+      .role-switch {
+        display: flex;
+        gap: 0.5rem;
+        margin-bottom: 1rem;
+        flex-wrap: wrap;
+      }
+
+      .pill-button {
+        padding: 0.6rem 1.1rem;
+        border-radius: 999px;
+        border: 1px solid var(--border);
+        font-weight: 600;
+        font-size: 0.9rem;
+        color: var(--text-soft);
+      }
+
+      .pill-button.active {
+        border-color: var(--accent);
+        color: var(--accent);
+        background: rgba(56, 189, 248, 0.12);
+      }
+
+      label span {
+        font-size: 0.85rem;
+        color: var(--text-soft);
+      }
+
+      .input {
+        width: 100%;
+        margin-top: 0.35rem;
+        padding: 0.85rem 1rem;
+        border-radius: 0.9rem;
+        border: 1px solid var(--border);
+        background: rgba(2, 6, 23, 0.4);
+        color: var(--text);
+        font-size: 1rem;
+      }
+
+      .auth-form,
+      .profile-form {
+        display: grid;
+        gap: 1rem;
+      }
+
+      .inline-form {
+        display: inline-block;
+      }
+
+      .inline-form button {
+        font: inherit;
+        cursor: pointer;
+      }
+
+      .link {
+        color: var(--accent);
+        font-weight: 500;
+      }
+
+      .eyebrow {
+        text-transform: uppercase;
+        letter-spacing: 0.3em;
+        color: var(--text-soft);
+        font-size: 0.75rem;
+        margin-bottom: 0.5rem;
+      }
+
+      .flash-container {
+        width: 100%;
+      }
+
+      .flash {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 1rem 1.25rem;
+        border-radius: 0.9rem;
+        border: 1px solid var(--border);
+        margin-bottom: 1rem;
+      }
+
+      .flash.notice {
+        border-color: rgba(56, 189, 248, 0.5);
+        color: var(--accent);
+      }
+
+      .flash.alert {
+        border-color: rgba(248, 113, 113, 0.5);
+        color: #f87171;
+      }
+
 
       main {
         flex: 1;
@@ -168,13 +293,30 @@
             Homason
           </a>
           <div class="nav-actions">
-            <a href="/dashboard" class="button secondary">Panel</a>
-            <a href="#contact" class="button primary">Contáctanos</a>
+            <% if user_signed_in? %>
+              <span class="user-pill">
+                <%= current_user[:name] %> · <%= role_label(current_user[:role]) %>
+              </span>
+              <%= link_to "Dashboard", dashboard_path, class: "button secondary" %>
+              <%= link_to "Configuración", profile_path, class: "button secondary" %>
+              <%= button_to "Cerrar sesión", session_path, method: :delete, form: { class: "inline-form" }, class: "button ghost" %>
+            <% else %>
+              <%= link_to "Login clientes", new_session_path(role: :client), class: "button secondary" %>
+              <%= link_to "Login profesionales", new_session_path(role: :professional), class: "button primary" %>
+              <a href="#contact" class="button secondary">Hablar con un asesor</a>
+            <% end %>
           </div>
         </nav>
       </header>
 
       <main>
+        <% if flash.any? %>
+          <div class="flash-container">
+            <% flash.each do |type, message| %>
+              <div class="flash <%= type %>"><%= message %></div>
+            <% end %>
+          </div>
+        <% end %>
         <%= yield %>
       </main>
 

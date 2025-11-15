@@ -1,0 +1,38 @@
+<section class="content" style="display: grid; place-items: center; min-height: calc(100vh - 200px);">
+  <div class="card auth-card">
+    <p class="eyebrow">Acceso <%= role_label(@role) %></p>
+    <h1 style="margin-top: 0; margin-bottom: 1.5rem;">Inicia sesión para entrar al panel</h1>
+
+    <div class="role-switch">
+      <% role_options.each do |value, label| %>
+        <%= link_to label, new_session_path(role: value), class: "pill-button #{'active' if @role == value}" %>
+      <% end %>
+    </div>
+
+    <p style="color: var(--text-soft); margin-bottom: 1.5rem;">
+      <%= @role == "professional" ? "Los profesionales pueden coordinar equipos, controlar hitos y compartir avances con sus clientes." : "Los clientes obtienen visibilidad total del presupuesto y el progreso de cada proyecto." %>
+    </p>
+
+    <%= form_with scope: :session, url: session_path, method: :post, class: "auth-form" do |form| %>
+      <%= form.hidden_field :role, value: @role %>
+
+      <label>
+        <span>Nombre completo</span>
+        <%= form.text_field :name, placeholder: "María Sánchez", class: "input" %>
+      </label>
+
+      <label>
+        <span>Correo electrónico</span>
+        <%= form.email_field :email, placeholder: "maria@estudio.com", class: "input", required: true %>
+      </label>
+
+      <button type="submit" class="button primary" style="justify-content: center; width: 100%;">
+        Entrar como <%= role_label(@role).downcase %>
+      </button>
+    <% end %>
+
+    <div style="margin-top: 1.5rem; text-align: center;">
+      <%= link_to "¿Prefieres el otro perfil? Cambia aquí", new_session_path(role: @role == "professional" ? "client" : "professional"), class: "link" %>
+    </div>
+  </div>
+</section>

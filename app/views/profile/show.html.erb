@@ -1,0 +1,35 @@
+<section class="content" style="display: grid; gap: 2rem;">
+  <header>
+    <p class="eyebrow">Configuración</p>
+    <h1>Tu perfil de <%= role_label(current_user[:role]) %></h1>
+    <p style="color: var(--text-soft); max-width: 60ch;">
+      Actualiza tu información de contacto y el tipo de perfil con el que colaboras en Homason.
+    </p>
+  </header>
+
+  <div class="card" style="display: grid; gap: 1.5rem; padding: 2.25rem;">
+    <%= form_with scope: :profile, url: profile_path, method: :patch, class: "profile-form" do |form| %>
+      <label>
+        <span>Nombre completo</span>
+        <%= form.text_field :name, value: current_user[:name], class: "input", required: true %>
+      </label>
+
+      <label>
+        <span>Correo electrónico</span>
+        <%= form.email_field :email, value: current_user[:email], class: "input", required: true %>
+      </label>
+
+      <label>
+        <span>Tipo de usuario</span>
+        <%= form.select :role, role_options.map { |value, label| [label, value] }, { selected: current_user[:role] }, class: "input" %>
+      </label>
+
+      <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+        <button type="submit" class="button primary">Guardar cambios</button>
+        <%= link_to "Volver al dashboard", dashboard_path, class: "button secondary" %>
+      </div>
+    <% end %>
+
+    <%= button_to "Cerrar sesión", session_path, method: :delete, form: { class: "inline-form" }, class: "button ghost" %>
+  </div>
+</section>

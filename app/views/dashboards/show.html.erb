@@ -5,7 +5,20 @@
     <p style="color: var(--text-soft); max-width: 60ch;">
       Una vista ligera con el estado de tus proyectos, presupuesto y próximos hitos. Todo editable con un clic.
     </p>
+    <div style="display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center; margin-top: 0.5rem;">
+      <p style="margin: 0; color: var(--text-soft);">
+        Sesión activa: <strong><%= current_user[:name] %></strong> · <%= role_label(current_user[:role]) %>
+      </p>
+      <%= link_to "Configuración de usuario", profile_path, class: "button secondary" %>
+      <%= button_to "Cerrar sesión", session_path, method: :delete, form: { class: "inline-form" }, class: "button ghost" %>
+    </div>
   </header>
+
+  <div style="background: var(--card); border-radius: 1rem; padding: 1.5rem; border: 1px solid var(--border);">
+    <p style="margin: 0; color: var(--text-soft);">
+      <%= current_user[:role] == "professional" ? "Como profesional puedes coordinar entregas, asignar responsables y compartir avances en tiempo real." : "Como cliente tienes visibilidad inmediata de tus obras y puedes revisar pagos y hitos sin intermediarios." %>
+    </p>
+  </div>
 
   <div class="grid three">
     <% [
