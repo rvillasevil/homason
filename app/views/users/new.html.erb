@@ -1,0 +1,69 @@
+<section class="content" style="display: grid; place-items: center; min-height: calc(100vh - 200px);">
+  <div class="card auth-card">
+    <p class="eyebrow">Registro <%= role_label(@role) %></p>
+    <h1 style="margin-top: 0; margin-bottom: 1.5rem;">Crea tu cuenta <%= role_label(@role).downcase %></h1>
+
+    <div class="role-switch">
+      <% role_options.each do |value, label| %>
+        <%= link_to label, new_user_path(role: value), class: "pill-button #{'active' if @role == value}" %>
+      <% end %>
+    </div>
+
+    <p style="color: var(--text-soft); margin-bottom: 1.5rem;">
+      <%= @role == "professional" ? "Registra a tu estudio, gestiona proyectos y coordina equipos desde un único panel." : "Organiza tus reformas con visibilidad total y comunicación directa con el equipo de obra." %>
+    </p>
+
+    <% if @user.errors.any? %>
+      <div class="flash alert" style="margin-bottom: 1.5rem;">
+        <p style="margin: 0 0 0.5rem 0; font-weight: 600;">Revisa los siguientes campos:</p>
+        <ul style="margin: 0; padding-left: 1.25rem;">
+          <% @user.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <%= form_with model: @user, url: users_path, class: "auth-form" do |form| %>
+      <%= hidden_field_tag :role, @role %>
+
+      <label>
+        <span>Nombre completo</span>
+        <%= form.text_field :name, placeholder: "María Sánchez", class: "input", required: true %>
+      </label>
+
+      <label>
+        <span>Correo electrónico</span>
+        <%= form.email_field :email, placeholder: "maria@estudio.com", class: "input", required: true %>
+      </label>
+
+      <label>
+        <span>Teléfono</span>
+        <%= form.telephone_field :phone, placeholder: "+34 600 000 000", class: "input" %>
+      </label>
+
+      <label>
+        <span>Dirección</span>
+        <%= form.text_field :address, placeholder: "Paseo de la Castellana, Madrid", class: "input" %>
+      </label>
+
+      <label>
+        <span>Contraseña</span>
+        <%= form.password_field :password, placeholder: "••••••••", class: "input", required: true %>
+      </label>
+
+      <label>
+        <span>Confirmar contraseña</span>
+        <%= form.password_field :password_confirmation, placeholder: "••••••••", class: "input", required: true %>
+      </label>
+
+      <button type="submit" class="button primary" style="justify-content: center; width: 100%;">
+        Crear cuenta <%= role_label(@role).downcase %>
+      </button>
+    <% end %>
+
+    <div style="margin-top: 1.5rem; text-align: center;">
+      <%= link_to "¿Ya tienes cuenta? Inicia sesión", new_session_path(role: @role), class: "link" %>
+    </div>
+  </div>
+</section>

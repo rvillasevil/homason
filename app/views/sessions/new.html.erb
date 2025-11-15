@@ -34,5 +34,9 @@
     <div style="margin-top: 1.5rem; text-align: center;">
       <%= link_to "¿Prefieres el otro perfil? Cambia aquí", new_session_path(role: @role == "professional" ? "client" : "professional"), class: "link" %>
     </div>
+    <div style="margin-top: 0.75rem; text-align: center; color: var(--text-soft); font-size: 0.95rem;">
+      ¿Aún no tienes cuenta?
+      <%= link_to "Crear cuenta", new_user_path(role: @role), class: "link" %>
+    </div>    
   </div>
 </section>
