@@ -1,0 +1,76 @@
+<section class="content" style="display: grid; gap: 2rem;">
+  <header style="display: flex; flex-direction: column; gap: 0.5rem;">
+    <p style="text-transform: uppercase; letter-spacing: 0.3em; color: var(--text-soft); font-size: 0.75rem;">Panel operativo</p>
+    <h1 style="margin: 0;">Dashboard esencial</h1>
+    <p style="color: var(--text-soft); max-width: 60ch;">
+      Una vista ligera con el estado de tus proyectos, presupuesto y próximos hitos. Todo editable con un clic.
+    </p>
+  </header>
+
+  <div class="grid three">
+    <% [
+         { label: "Proyectos activos", value: "4", trend: "+1 esta semana" },
+         { label: "Presupuesto comprometido", value: "€ 420k", trend: "72% del total" },
+         { label: "Satisfacción del cliente", value: "9.4/10", trend: "+0.2 respecto al mes anterior" }
+       ].each do |metric| %>
+      <article style="background: var(--card-soft); border-radius: 1rem; padding: 1.5rem; border: 1px solid var(--border);">
+        <p style="color: var(--text-soft); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.1em;">
+          <%= metric[:label] %>
+        </p>
+        <p style="font-size: 2rem; font-weight: 600; margin: 0.4rem 0;">
+          <%= metric[:value] %>
+        </p>
+        <p style="color: var(--accent); font-size: 0.9rem;">
+          <%= metric[:trend] %>
+        </p>
+      </article>
+    <% end %>
+  </div>
+
+  <div class="grid two">
+    <section style="background: var(--card); border-radius: 1.25rem; border: 1px solid var(--border); padding: 1.8rem;">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+        <h2 style="margin: 0; font-size: 1.3rem;">Próximos hitos</h2>
+        <button class="button secondary" style="padding: 0.5rem 1rem; font-size: 0.85rem;">Nuevo</button>
+      </div>
+      <ul style="list-style: none; padding: 0; margin: 0; display: grid; gap: 1rem;">
+        <% [
+             { title: "Instalación eléctrica", date: "12 JUN", status: "En curso" },
+             { title: "Entrega mobiliario", date: "20 JUN", status: "Confirmado" },
+             { title: "Inspección final", date: "05 JUL", status: "Pendiente" }
+           ].each do |milestone| %>
+          <li style="display: flex; justify-content: space-between; align-items: center; padding: 1rem; border-radius: 1rem; background: var(--card-soft); border: 1px solid var(--border);">
+            <div>
+              <strong><%= milestone[:title] %></strong>
+              <p style="color: var(--text-soft); margin: 0.1rem 0 0;">Estado: <%= milestone[:status] %></p>
+            </div>
+            <span style="font-weight: 600; color: var(--accent);"><%= milestone[:date] %></span>
+          </li>
+        <% end %>
+      </ul>
+    </section>
+
+    <section style="background: var(--card); border-radius: 1.25rem; border: 1px solid var(--border); padding: 1.8rem; display: grid; gap: 1.25rem;">
+      <div style="display: flex; justify-content: space-between; align-items: center;">
+        <h2 style="margin: 0; font-size: 1.3rem;">Resumen financiero</h2>
+        <span style="color: var(--text-soft); font-size: 0.9rem;">Actualizado hoy</span>
+      </div>
+      <div style="display: grid; gap: 0.8rem;">
+        <% [
+             { label: "Presupuesto aprobado", amount: "€ 585,000" },
+             { label: "Gastado", amount: "€ 420,500" },
+             { label: "Disponible", amount: "€ 164,500" }
+           ].each do |row| %>
+          <div style="display: flex; justify-content: space-between;">
+            <span style="color: var(--text-soft);"><%= row[:label] %></span>
+            <strong><%= row[:amount] %></strong>
+          </div>
+        <% end %>
+      </div>
+      <div style="height: 8px; border-radius: 999px; background: rgba(148, 163, 184, 0.2); overflow: hidden;">
+        <span style="display: block; width: 72%; height: 100%; background: linear-gradient(120deg, var(--accent), var(--accent-strong));"></span>
+      </div>
+      <button class="button primary" style="justify-content: center;">Exportar reporte</button>
+    </section>
+  </div>
+</section>

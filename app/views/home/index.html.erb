@@ -1,10 +1,95 @@
-<%= render "hero" %>
-<%= render "trust" %>
-<%= render "how_it_works" %>
-<%= render "subscriptions" %>
-<%= render "booking" %>
-<%= render "materials" %>
-<%= render "quality" %>
-<%= render "testimonials" %>
-<%= render "faq" %>
-<%= render "cta" %>
+<section class="content">
+  <div class="grid two" style="align-items: center; gap: 3rem;">
+    <div>
+      <p style="text-transform: uppercase; letter-spacing: 0.3em; color: var(--text-soft); font-size: 0.8rem; margin-bottom: 1rem;">
+        Reformas orquestadas
+      </p>
+      <h1 style="font-size: clamp(2.4rem, 5vw, 3.6rem); line-height: 1.1; margin-bottom: 1.5rem;">
+        Coordinamos cada obra como si fuera una misión crítica.
+      </h1>
+      <p style="font-size: 1.05rem; color: var(--text-soft); margin-bottom: 2rem; max-width: 38ch;">
+        Homason combina diseño, materiales y ejecución en un solo flujo de trabajo digital. Sin capas extra, sin llamadas eternas,
+        solo progreso visible desde el primer día.
+      </p>
+      <div style="display: flex; flex-wrap: wrap; gap: 1rem;">
+        <a href="/dashboard" class="button primary">Entrar al panel</a>
+        <a href="#contact" class="button secondary">Hablar con un asesor</a>
+      </div>
+    </div>
+    <div style="background: var(--card); border-radius: 1.5rem; padding: 2rem; border: 1px solid var(--border); box-shadow: 0 50px 120px rgba(15, 23, 42, 0.4);">
+      <p style="text-transform: uppercase; letter-spacing: 0.2em; color: var(--accent); font-size: 0.75rem; margin-bottom: 0.7rem;">
+        Panel en tiempo real
+      </p>
+      <h3 style="margin-bottom: 1.25rem;">Lo esencial en una sola vista</h3>
+      <ul style="list-style: none; padding: 0; margin: 0; display: grid; gap: 1rem;">
+        <li style="padding: 1rem; border-radius: 1rem; background: var(--card-soft); border: 1px solid var(--border);">
+          <strong style="display: block;">CapEx controlado</strong>
+          <span style="color: var(--text-soft);">Seguimiento de presupuesto, incidencias y pagos al día.</span>
+        </li>
+        <li style="padding: 1rem; border-radius: 1rem; background: var(--card-soft); border: 1px solid var(--border);">
+          <strong style="display: block;">Equipos sincronizados</strong>
+          <span style="color: var(--text-soft);">Agenda compartida con constructores, diseñadores y proveedores.</span>
+        </li>
+        <li style="padding: 1rem; border-radius: 1rem; background: var(--card-soft); border: 1px solid var(--border);">
+          <strong style="display: block;">Materiales garantizados</strong>
+          <span style="color: var(--text-soft);">Pedidos con trazabilidad y fechas de entrega aseguradas.</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="content">
+  <div class="grid three">
+    <div style="background: var(--card-soft); border-radius: 1rem; padding: 1.6rem; border: 1px solid var(--border);">
+      <p style="font-size: 2.5rem; font-weight: 600; margin-bottom: 0.5rem;">72h</p>
+      <p style="color: var(--text-soft);">Para entregar un plan maestro listo para firmar.</p>
+    </div>
+    <div style="background: var(--card-soft); border-radius: 1rem; padding: 1.6rem; border: 1px solid var(--border);">
+      <p style="font-size: 2.5rem; font-weight: 600; margin-bottom: 0.5rem;">98%</p>
+      <p style="color: var(--text-soft);">De hitos cumplidos según planificación original.</p>
+    </div>
+    <div style="background: var(--card-soft); border-radius: 1rem; padding: 1.6rem; border: 1px solid var(--border);">
+      <p style="font-size: 2.5rem; font-weight: 600; margin-bottom: 0.5rem;">12</p>
+      <p style="color: var(--text-soft);">Ciudades operativas con equipos certificados.</p>
+    </div>
+  </div>
+</section>
+
+<section class="content" id="contact">
+  <div style="background: var(--card); border-radius: 1.5rem; border: 1px solid var(--border); padding: 2.5rem; display: grid; gap: 2rem;">
+    <div>
+      <h2 style="font-size: clamp(2rem, 4vw, 2.6rem); margin-bottom: 1rem;">Agenda una llamada de diagnóstico</h2>
+      <p style="color: var(--text-soft); max-width: 45ch;">
+        Cuéntanos qué espacio quieres transformar y trazamos contigo un plan simple: presupuesto, calendario y responsables.
+      </p>
+    </div>
+    <form style="display: grid; gap: 1rem;">
+      <label style="display: grid; gap: 0.3rem; font-size: 0.95rem;">
+        Nombre
+        <input
+          type="text"
+          placeholder="María Arquitecta"
+          style="padding: 0.85rem 1rem; border-radius: 0.9rem; border: 1px solid var(--border); background: rgba(2, 6, 23, 0.4); color: var(--text);"
+        />
+      </label>
+      <label style="display: grid; gap: 0.3rem; font-size: 0.95rem;">
+        Email
+        <input
+          type="email"
+          placeholder="maria@estudio.com"
+          style="padding: 0.85rem 1rem; border-radius: 0.9rem; border: 1px solid var(--border); background: rgba(2, 6, 23, 0.4); color: var(--text);"
+        />
+      </label>
+      <label style="display: grid; gap: 0.3rem; font-size: 0.95rem;">
+        Mensaje
+        <textarea
+          rows="3"
+          placeholder="Quiero coordinar tres reformas integrales en Q4"
+          style="padding: 0.85rem 1rem; border-radius: 0.9rem; border: 1px solid var(--border); background: rgba(2, 6, 23, 0.4); color: var(--text);"
+        ></textarea>
+      </label>
+      <button type="button" class="button primary" style="justify-content: center;">Enviar solicitud</button>
+    </form>
+  </div>
+</section>
