@@ -226,6 +226,14 @@
         margin-bottom: 2rem;
       }
 
+      .subheading {
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        font-size: 0.8rem;
+        font-weight: 600;
+        color: var(--text-soft);
+      }
+
       .grid {
         display: grid;
         gap: 1.5rem;
@@ -300,6 +308,12 @@
         background: #fff;
       }
 
+      .card-highlight {
+        border: 1px solid rgba(37, 99, 235, 0.2);
+        background: linear-gradient(180deg, rgba(37, 99, 235, 0.05), #fff);
+      }
+
+
       .services-grid {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -325,6 +339,98 @@
         margin-top: 0;
         margin-bottom: 0.4rem;
       }
+
+      .stat-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        gap: 1rem;
+      }
+
+      .stat-card {
+        border: 1px dashed var(--border);
+        border-radius: 18px;
+        padding: 1.2rem;
+        background: rgba(255, 255, 255, 0.8);
+        text-align: center;
+      }
+
+      .stat-card strong {
+        display: block;
+        font-size: 1.8rem;
+      }
+
+      .icon-list,
+      .list-check {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: grid;
+        gap: 0.8rem;
+      }
+
+      .icon-list li,
+      .list-check li {
+        display: flex;
+        align-items: flex-start;
+        gap: 0.6rem;
+      }
+
+      .icon-bullet {
+        width: 32px;
+        height: 32px;
+        border-radius: 10px;
+        background: rgba(37, 99, 235, 0.12);
+        color: var(--accent);
+        display: grid;
+        place-items: center;
+        font-weight: 600;
+      }
+
+      .module-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: 1rem;
+      }
+
+      .module-card {
+        border: 1px solid var(--border);
+        border-radius: 20px;
+        padding: 1.25rem;
+        background: #fff;
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+      }
+
+      .tag-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+      }
+
+      .tag {
+        padding: 0.35rem 0.75rem;
+        border-radius: 999px;
+        background: rgba(37, 99, 235, 0.1);
+        color: var(--accent);
+        font-size: 0.85rem;
+        font-weight: 600;
+      }
+
+      .chip-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+        gap: 0.75rem;
+      }
+
+      .chip {
+        padding: 0.85rem 1rem;
+        border-radius: 14px;
+        border: 1px solid var(--border);
+        background: #fff;
+        font-weight: 600;
+      }
+
 
       form {
         display: grid;

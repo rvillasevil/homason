@@ -17,13 +17,13 @@
       <%= form.hidden_field :role, value: @role %>
 
       <label>
-        <span>Nombre completo</span>
-        <%= form.text_field :name, placeholder: "María Sánchez", class: "input" %>
+        <span>Correo electrónico</span>
+        <%= form.email_field :email, placeholder: "maria@estudio.com", class: "input", required: true %>
       </label>
 
       <label>
-        <span>Correo electrónico</span>
-        <%= form.email_field :email, placeholder: "maria@estudio.com", class: "input", required: true %>
+        <span>Contraseña</span>
+        <%= form.password_field :password, placeholder: "••••••••", class: "input", required: true %>
       </label>
 
       <button type="submit" class="button primary" style="justify-content: center; width: 100%;">
