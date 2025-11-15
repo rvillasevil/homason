@@ -33,5 +33,6 @@ module Homason
     config.session_store :cookie_store, key: "_homason_session", same_site: :lax
     config.middleware.use ActionDispatch::Cookies
     config.middleware.use ActionDispatch::Session::CookieStore, config.session_options
+    config.middleware.use ActionDispatch::Flash
   end
 end
