@@ -9,7 +9,7 @@ class Lead < ApplicationRecord
     scheduled: "scheduled",
     converted: "converted",
     lost: "lost"
-  }, default: "new"
+  }, default: "new", _scopes: false
 
   validates :name, presence: true
   validates :status, presence: true
