@@ -1,0 +1,223 @@
+.dashboard {
+  display: grid;
+  gap: 2.5rem;
+  padding-bottom: 3rem;
+}
+
+.dashboard-hero {
+  border-radius: 1.5rem;
+  padding: clamp(1.5rem, 3vw, 2.5rem);
+  background: radial-gradient(circle at top left, #f7f1ff, #f0f9ff 55%, #f6fbff);
+  border: 1px solid rgba(17, 24, 39, 0.08);
+  box-shadow: 0 25px 60px rgba(15, 23, 42, 0.08);
+  display: grid;
+  gap: 1.25rem;
+}
+
+.dashboard-hero__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  align-items: center;
+  color: var(--text-soft);
+  font-size: 0.95rem;
+}
+
+.dashboard-hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+.dashboard-metrics {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.25rem;
+}
+
+.dashboard-metric {
+  border-radius: 1.2rem;
+  padding: 1.25rem 1.5rem;
+  background: white;
+  border: 1px solid rgba(17, 24, 39, 0.06);
+  box-shadow: 0 18px 35px rgba(15, 23, 42, 0.06);
+  position: relative;
+  overflow: hidden;
+}
+
+.dashboard-metric__icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 0.9rem;
+  display: grid;
+  place-items: center;
+  font-size: 1.3rem;
+  margin-bottom: 0.5rem;
+}
+
+.dashboard-metric__value {
+  font-size: clamp(1.9rem, 3vw, 2.3rem);
+  margin: 0.1rem 0;
+}
+
+.dashboard-grid-two {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  align-items: start;
+}
+
+.card-panel {
+  background: white;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  border-radius: 1.5rem;
+  padding: 1.5rem;
+  display: grid;
+  gap: 1.2rem;
+  box-shadow: 0 30px 50px rgba(15, 23, 42, 0.08);
+}
+
+.card-panel__head {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  align-items: baseline;
+}
+
+.budget-builder,
+.quote-form {
+  border-radius: 1.25rem;
+  border: 1px solid rgba(99, 102, 241, 0.2);
+  padding: 1.2rem;
+  background: linear-gradient(135deg, rgba(79, 70, 229, 0.06), rgba(79, 70, 229, 0.02));
+  display: grid;
+  gap: 1rem;
+}
+
+.budget-builder__items {
+  display: grid;
+  gap: 0.8rem;
+}
+
+.budget-item {
+  border-radius: 1rem;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  padding: 0.9rem 1rem;
+  display: flex;
+  justify-content: space-between;
+  gap: 0.8rem;
+  background: white;
+}
+
+.budget-item__meta {
+  display: grid;
+  gap: 0.2rem;
+}
+
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 0.8rem;
+}
+
+.calendar-day {
+  border-radius: 1rem;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  padding: 0.8rem;
+  display: grid;
+  gap: 0.2rem;
+  background: var(--card-soft);
+}
+
+.calendar-day--highlight {
+  border-color: rgba(14, 165, 233, 0.6);
+  background: linear-gradient(135deg, rgba(14, 165, 233, 0.15), rgba(14, 165, 233, 0.05));
+}
+
+.schedule-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.8rem;
+}
+
+.schedule-item {
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  border-radius: 1rem;
+  padding: 0.9rem 1rem;
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  background: var(--card-soft);
+}
+
+.reservations-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 680px;
+}
+
+.reservations-table th,
+.reservations-table td {
+  padding: 0.85rem 0.75rem;
+}
+
+.reservations-table thead {
+  color: var(--text-soft);
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+}
+
+.reservations-table tbody tr + tr {
+  border-top: 1px solid rgba(15, 23, 42, 0.08);
+}
+
+.badge-status {
+  border-radius: 999px;
+  padding: 0.3rem 0.75rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.badge-status.confirmed {
+  background: rgba(34, 197, 94, 0.15);
+  color: rgba(22, 163, 74, 1);
+}
+
+.badge-status.pending {
+  background: rgba(251, 146, 60, 0.15);
+  color: rgba(234, 88, 12, 1);
+}
+
+.badge-status.in-progress {
+  background: rgba(59, 130, 246, 0.15);
+  color: rgba(37, 99, 235, 1);
+}
+
+.reservation-actions {
+  display: flex;
+  gap: 0.4rem;
+  justify-content: flex-end;
+}
+
+.stacked-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.4rem;
+  color: var(--text-soft);
+}
+
+@media (max-width: 640px) {
+  .schedule-item,
+  .reservation-actions {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

@@ -17,7 +17,8 @@
       rel="stylesheet"
       integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
       crossorigin="anonymous"
-    />    
+    />   
+    <%= stylesheet_link_tag "dashboard", media: "all" %>    
     <style>
       :root {
         --bg: #f8f7ff;
@@ -120,9 +121,10 @@
       .menu {
         display: flex;
         gap: 0.65rem;
-        flex-wrap: wrap;
+        flex-wrap: nowrap;
         font-size: 0.95rem;
         color: var(--text-soft);
+        white-space: nowrap;        
       }
 
       .menu a {
@@ -140,7 +142,7 @@
       .nav-actions {
         display: flex;
         gap: 0.6rem;
-        flex-wrap: wrap;
+        flex-wrap: nowrap;
         justify-content: flex-end;
       }
 

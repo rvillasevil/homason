@@ -1,89 +1,221 @@
-<section class="content" style="display: grid; gap: 2rem;">
-  <header style="display: flex; flex-direction: column; gap: 0.5rem;">
-    <p style="text-transform: uppercase; letter-spacing: 0.3em; color: var(--text-soft); font-size: 0.75rem;">Panel operativo</p>
-    <h1 style="margin: 0;">Dashboard esencial</h1>
-    <p style="color: var(--text-soft); max-width: 60ch;">
-      Una vista ligera con el estado de tus proyectos, presupuesto y próximos hitos. Todo editable con un clic.
-    </p>
-    <div style="display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center; margin-top: 0.5rem;">
-      <p style="margin: 0; color: var(--text-soft);">
-        Sesión activa: <strong><%= current_user[:name] %></strong> · <%= role_label(current_user[:role]) %>
-      </p>
-      <%= link_to "Configuración de usuario", profile_path, class: "button secondary" %>
-      <%= button_to "Cerrar sesión", session_path, method: :delete, form: { class: "inline-form" }, class: "button ghost" %>
-    </div>
-  </header>
-
-  <div style="background: var(--card); border-radius: 1rem; padding: 1.5rem; border: 1px solid var(--border);">
-    <p style="margin: 0; color: var(--text-soft);">
-      <%= current_user[:role] == "professional" ? "Como profesional puedes coordinar entregas, asignar responsables y compartir avances en tiempo real." : "Como cliente tienes visibilidad inmediata de tus obras y puedes revisar pagos y hitos sin intermediarios." %>
-    </p>
-  </div>
-
-  <div class="grid three">
-    <% [
-         { label: "Proyectos activos", value: "4", trend: "+1 esta semana" },
-         { label: "Presupuesto comprometido", value: "€ 420k", trend: "72% del total" },
-         { label: "Satisfacción del cliente", value: "9.4/10", trend: "+0.2 respecto al mes anterior" }
-       ].each do |metric| %>
-      <article style="background: var(--card-soft); border-radius: 1rem; padding: 1.5rem; border: 1px solid var(--border);">
-        <p style="color: var(--text-soft); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.1em;">
-          <%= metric[:label] %>
+<section class="content">
+  <div class="dashboard">
+    <header class="dashboard-hero">
+      <div>
+        <p class="eyebrow" style="margin: 0; letter-spacing: 0.3em; text-transform: uppercase; color: var(--text-soft);">
+          Hub operativo
         </p>
-        <p style="font-size: 2rem; font-weight: 600; margin: 0.4rem 0;">
-          <%= metric[:value] %>
+        <h1 style="margin: 0; font-size: clamp(2rem, 4vw, 3rem);">Panel colaborativo Homason</h1>
+        <p style="margin: 0; color: var(--text-soft); max-width: 70ch;">
+          Centraliza el envío de presupuestos, la planificación de mano de obra, el calendario profesional y las reservas
+          autogestionables del cliente en una sola experiencia fluida.
         </p>
-        <p style="color: var(--accent); font-size: 0.9rem;">
-          <%= metric[:trend] %>
-        </p>
-      </article>
-    <% end %>
-  </div>
-
-  <div class="grid two">
-    <section style="background: var(--card); border-radius: 1.25rem; border: 1px solid var(--border); padding: 1.8rem;">
-      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
-        <h2 style="margin: 0; font-size: 1.3rem;">Próximos hitos</h2>
-        <button class="button secondary" style="padding: 0.5rem 1rem; font-size: 0.85rem;">Nuevo</button>
       </div>
-      <ul style="list-style: none; padding: 0; margin: 0; display: grid; gap: 1rem;">
-        <% [
-             { title: "Instalación eléctrica", date: "12 JUN", status: "En curso" },
-             { title: "Entrega mobiliario", date: "20 JUN", status: "Confirmado" },
-             { title: "Inspección final", date: "05 JUL", status: "Pendiente" }
-           ].each do |milestone| %>
-          <li style="display: flex; justify-content: space-between; align-items: center; padding: 1rem; border-radius: 1rem; background: var(--card-soft); border: 1px solid var(--border);">
-            <div>
-              <strong><%= milestone[:title] %></strong>
-              <p style="color: var(--text-soft); margin: 0.1rem 0 0;">Estado: <%= milestone[:status] %></p>
-            </div>
-            <span style="font-weight: 600; color: var(--accent);"><%= milestone[:date] %></span>
-          </li>
-        <% end %>
-      </ul>
-    </section>
-
-    <section style="background: var(--card); border-radius: 1.25rem; border: 1px solid var(--border); padding: 1.8rem; display: grid; gap: 1.25rem;">
-      <div style="display: flex; justify-content: space-between; align-items: center;">
-        <h2 style="margin: 0; font-size: 1.3rem;">Resumen financiero</h2>
-        <span style="color: var(--text-soft); font-size: 0.9rem;">Actualizado hoy</span>
+      <div class="dashboard-hero__meta">
+        <span class="user-pill">Sesión activa · <strong><%= current_user[:name] %></strong></span>
+        <span class="chip">Rol: <%= role_label(current_user[:role]) %></span>
+        <div class="dashboard-hero__actions">
+          <%= link_to "Configuración", profile_path, class: "button secondary" %>
+          <%= button_to "Cerrar sesión", session_path, method: :delete, form: { class: "inline-form" }, class: "button ghost" %>
+        </div>
       </div>
-      <div style="display: grid; gap: 0.8rem;">
-        <% [
-             { label: "Presupuesto aprobado", amount: "€ 585,000" },
-             { label: "Gastado", amount: "€ 420,500" },
-             { label: "Disponible", amount: "€ 164,500" }
-           ].each do |row| %>
-          <div style="display: flex; justify-content: space-between;">
-            <span style="color: var(--text-soft);"><%= row[:label] %></span>
-            <strong><%= row[:amount] %></strong>
+    </header>
+
+    <section class="dashboard-metrics">
+      <% [
+           { label: "Proyectos activos", value: "4", detail: "+1 esta semana", icon: "🏗️", accent: "rgba(59,130,246,.15)" },
+           { label: "Presupuestos enviados", value: "12", detail: "3 pendientes", icon: "🧾", accent: "rgba(249,115,22,.15)" },
+           { label: "Reservas confirmadas", value: "8", detail: "2 requieren ajuste", icon: "📅", accent: "rgba(34,197,94,.2)" }
+         ].each do |metric| %>
+        <article class="dashboard-metric">
+          <div
+            class="dashboard-metric__icon"
+            style="background: <%= metric[:accent] %>; border: 1px solid rgba(17, 24, 39, 0.08);"
+          >
+            <%= metric[:icon] %>
           </div>
-        <% end %>
+          <p style="margin: 0; color: var(--text-soft); font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.1em;">
+            <%= metric[:label] %>
+          </p>
+          <p class="dashboard-metric__value"><strong><%= metric[:value] %></strong></p>
+          <p style="margin: 0; color: var(--accent); font-size: 0.9rem;"> <%= metric[:detail] %></p>
+        </article>
+      <% end %>
+    </section>
+
+    <div class="dashboard-grid-two">
+      <section class="card-panel">
+        <div class="card-panel__head">
+          <div>
+            <p class="eyebrow" style="margin: 0;">Administrador</p>
+            <h2 style="margin: 0;">Presupuestos y partidas</h2>
+          </div>
+          <button class="button secondary" style="padding: 0.4rem 1rem;">Ver historial</button>
+        </div>
+        <div class="quote-form">
+          <div style="display: flex; align-items: center; gap: 0.6rem;">
+            <div class="user-pill" style="background: rgba(76,92,255,0.12);">Enviar presupuesto</div>
+            <small style="color: var(--text-soft);">Comparte alcance y montos personalizados</small>
+          </div>
+          <form style="display: grid; gap: 0.8rem;">
+            <label style="display: grid; gap: 0.3rem;">
+              <span style="font-size: 0.85rem; color: var(--text-soft);">Cliente / obra</span>
+              <select style="border-radius: 0.9rem; border: 1px solid var(--border); padding: 0.75rem; background: #fff;">
+                <option>Residencial · Proyecto Rivera</option>
+                <option>Retail · Local Centro</option>
+                <option>Oficinas · Torre Sur</option>
+              </select>
+            </label>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 0.8rem;">
+              <label style="display: grid; gap: 0.3rem;">
+                <span style="font-size: 0.85rem; color: var(--text-soft);">Monto estimado</span>
+                <input type="number" placeholder="€ 0" style="border-radius: 0.9rem; border: 1px solid var(--border); padding: 0.75rem;" />
+              </label>
+              <label style="display: grid; gap: 0.3rem;">
+                <span style="font-size: 0.85rem; color: var(--text-soft);">Vigencia</span>
+                <input type="date" style="border-radius: 0.9rem; border: 1px solid var(--border); padding: 0.75rem;" />
+              </label>
+            </div>
+            <label style="display: grid; gap: 0.3rem;">
+              <span style="font-size: 0.85rem; color: var(--text-soft);">Notas o alcance</span>
+              <textarea rows="3" placeholder="Incluye hitos, entregables y vigencia" style="border-radius: 0.9rem; border: 1px solid var(--border); padding: 0.75rem;"></textarea>
+            </label>
+            <button type="button" class="button primary" style="justify-content: center;">Mandar presupuesto</button>
+          </form>
+        </div>
+        <div class="budget-builder">
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <h3 style="margin: 0; font-size: 1rem;">Constructor de partidas</h3>
+            <span style="color: var(--text-soft); font-size: 0.9rem;">Modo detallado</span>
+          </div>
+          <div class="budget-builder__items">
+            <% [
+                 { concept: "Mano de obra · día completo", cost: "€ 420", meta: "2 oficiales", tone: "rgba(76,92,255,0.12)" },
+                 { concept: "Mano de obra · media jornada", cost: "€ 210", meta: "Pintura y acabados", tone: "rgba(14,165,233,0.15)" },
+                 { concept: "Materiales", cost: "€ 1,850", meta: "Mortero, cableado, luminarias", tone: "rgba(249,115,22,0.1)" },
+                 { concept: "Otros", cost: "€ 380", meta: "Permisos municipales", tone: "rgba(16,185,129,0.15)" }
+               ].each do |item| %>
+              <div class="budget-item">
+                <div class="budget-item__meta">
+                  <span class="chip" style="background: <%= item[:tone] %>; color: var(--text); font-size: 0.75rem;">
+                    <%= item[:concept] %>
+                  </span>
+                  <span style="color: var(--text-soft); font-size: 0.9rem;"> <%= item[:meta] %></span>
+                </div>
+                <strong><%= item[:cost] %></strong>
+              </div>
+            <% end %>
+          </div>
+          <button class="button ghost" style="justify-content: center;">Agregar partida</button>
+        </div>
+      </section>
+
+      <section class="card-panel">
+        <div class="card-panel__head">
+          <div>
+            <p class="eyebrow" style="margin: 0;">Profesional</p>
+            <h2 style="margin: 0;">Calendario de obras</h2>
+          </div>
+          <button class="button secondary" style="padding: 0.4rem 1rem;">Sincronizar</button>
+        </div>
+        <div class="calendar-grid">
+          <% %w[Lun Mar Mié Jue Vie].each_with_index do |day, index| %>
+            <% highlight = index == 2 %>
+            <div class="calendar-day <%= "calendar-day--highlight" if highlight %>">
+              <p style="margin: 0; font-size: 0.85rem; color: var(--text-soft);"><%= day %></p>
+              <p style="margin: 0; font-size: 1.4rem; font-weight: 600;">1<%= index %></p>
+              <% if highlight %>
+                <p style="margin: 0; font-size: 0.85rem; color: var(--accent-strong);">Visita de obra</p>
+              <% else %>
+                <p style="margin: 0; font-size: 0.85rem; color: var(--text-soft);">Disponible</p>
+              <% end %>
+            </div>
+          <% end %>
+        </div>
+        <ul class="schedule-list">
+          <% [
+               { title: "Obra La Rivera", date: "12 JUN", detail: "Instalación eléctrica · 08:00" },
+               { title: "Reforma local Centro", date: "13 JUN", detail: "Supervisión estructuras · 10:00" },
+               { title: "Torre Sur", date: "15 JUN", detail: "Cierre frente norte · 16:00" }
+             ].each do |event| %>
+            <li class="schedule-item">
+              <div>
+                <strong><%= event[:title] %></strong>
+                <p style="margin: 0; font-size: 0.85rem; color: var(--text-soft);"><%= event[:detail] %></p>
+              </div>
+              <span style="font-weight: 600; color: var(--accent);"><%= event[:date] %></span>
+            </li>
+          <% end %>
+        </ul>
+      </section>
+    </div>
+
+    <section class="card-panel">
+      <div class="card-panel__head">
+        <div>
+          <p class="eyebrow" style="margin: 0;">Cliente</p>
+          <h2 style="margin: 0;">Reservas autogestionables</h2>
+          <p style="margin: 0; color: var(--text-soft);">Cancelación, reprogramación o modificación en un clic.</p>
+        </div>
+        <button class="button secondary" style="padding: 0.4rem 1rem;">Crear nueva reserva</button>
       </div>
-      <div style="height: 8px; border-radius: 999px; background: rgba(148, 163, 184, 0.2); overflow: hidden;">
-        <span style="display: block; width: 72%; height: 100%; background: linear-gradient(120deg, var(--accent), var(--accent-strong));"></span>
+      <div style="overflow-x: auto;">
+        <table class="reservations-table">
+          <thead>
+            <tr>
+              <th>Reserva</th>
+              <th>Materiales / Mano de obra</th>
+              <th>Estado</th>
+              <th style="text-align: right;">Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% [
+                 {
+                   name: "Obra Rivera · Semana 24",
+                   bundles: ["Piso laminado", "2 días mano de obra"],
+                   status: "Confirmada",
+                   tone: "confirmed"
+                 },
+                 {
+                   name: "Retail Centro · Pintura",
+                   bundles: ["Materiales premium", "Media jornada mano de obra"],
+                   status: "Requiere confirmación",
+                   tone: "pending"
+                 },
+                 {
+                   name: "Torre Sur · Climatización",
+                   bundles: ["HVAC completo", "3 días mano de obra"],
+                   status: "En curso",
+                   tone: "in-progress"
+                 }
+               ].each do |booking| %>
+              <tr>
+                <td>
+                  <strong><%= booking[:name] %></strong>
+                </td>
+                <td>
+                  <ul class="stacked-list">
+                    <% booking[:bundles].each do |item| %>
+                      <li>• <%= item %></li>
+                    <% end %>
+                  </ul>
+                </td>
+                <td>
+                  <span class="badge-status <%= booking[:tone] %>"><%= booking[:status] %></span>
+                </td>
+                <td>
+                  <div class="reservation-actions">
+                    <button class="button ghost" style="padding: 0.35rem 0.9rem;">Cancelar</button>
+                    <button class="button secondary" style="padding: 0.35rem 0.9rem;">Reprogramar</button>
+                    <button class="button primary" style="padding: 0.35rem 0.9rem;">Modificar</button>
+                  </div>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
       </div>
-      <button class="button primary" style="justify-content: center;">Exportar reporte</button>
     </section>
   </div>
-</section>
+</section>  
